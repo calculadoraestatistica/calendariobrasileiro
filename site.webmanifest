@@ -1,0 +1,18 @@
+{
+  "name": "Calendário Brasileiro",
+  "short_name": "Calendário BR",
+  "description": "Calendário brasileiro com feriados, dias úteis e prazos.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#166534",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}

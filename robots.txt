@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://calendariobrasileiro.com.br/sitemap.xml
