@@ -46,21 +46,22 @@
   function bootDiff(){
     if (!$('diff-run')) return;
     const today = new Date();
-    $('diff-start').value = isoDate(today);
-    $('diff-end').value = isoDate(addDays(today, 30));
+    if (!$('diff-start').value) $('diff-start').value = isoDate(today);
+    if (!$('diff-end').value) $('diff-end').value = isoDate(addDays(today, 30));
     $('diff-run').addEventListener('click', () => {
       const start = parse($('diff-start').value), end = parse($('diff-end').value);
       const mode = $('diff-mode').value;
-      const count = countUseful(start, end, mode, $('diff-inclusive').value === 'yes');
+      const inc = $('diff-inclusive') ? $('diff-inclusive').value === 'yes' : false;
+      const count = countUseful(start, end, mode, inc);
       const box = $('diff-result');
       box.hidden = false;
-      box.innerHTML = count === null ? 'Informe as duas datas.' : `<strong>${count}</strong> dia(s) ${mode === 'corridos' ? 'corrido(s)' : 'útil(eis)'} no intervalo.`;
+      box.innerHTML = count === null ? 'Informe as duas datas.' : `<strong>${count}</strong> dia(s) ${mode === 'corridos' ? 'corrido(s)' : (mode === 'bank' ? 'útil(eis) bancário(s)' : 'útil(eis)')} no intervalo.`;
     });
   }
   function bootAdd(){
     if (!$('add-run')) return;
     const today = new Date();
-    $('add-start').value = isoDate(today);
+    if (!$('add-start').value) $('add-start').value = isoDate(today);
     $('add-run').addEventListener('click', () => {
       const start = parse($('add-start').value);
       const days = Number($('add-days').value || 0);
@@ -75,13 +76,14 @@
   function bootWeek(){
     if (!$('week-run')) return;
     const today = new Date();
-    $('week-date').value = isoDate(today);
+    if (!$('week-date').value) $('week-date').value = isoDate(today);
     $('week-run').addEventListener('click', () => {
       const d = parse($('week-date').value);
       const box = $('week-result');
       box.hidden = false;
       if (!d) { box.textContent = 'Informe uma data.'; return; }
-      box.innerHTML = `${fmt(d)} cai em <strong>${['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'][d.getUTCDay()]}</strong> e está na semana ISO <strong>${isoWeek(d)}</strong>.`;
+      const names = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+      box.innerHTML = `${fmt(d)} cai em <strong>${names[d.getUTCDay()]}</strong> e está na semana ISO <strong>${isoWeek(d)}</strong>.`;
     });
   }
   document.addEventListener('DOMContentLoaded', () => { bootDiff(); bootAdd(); bootWeek(); });

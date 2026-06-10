@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-10T18:10:30Z",
+  "generatedAt": "2026-06-10T21:01:51Z",
   "startYear": 2026,
   "endYear": 2050,
   "years": {
@@ -14,14 +14,14 @@
         },
         {
           "date": "2026-02-16",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2026-02-17",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -137,8 +137,7 @@
         "2026-11-02",
         "2026-11-15",
         "2026-11-20",
-        "2026-12-25",
-        "2026-12-31"
+        "2026-12-25"
       ]
     },
     "2027": {
@@ -152,14 +151,14 @@
         },
         {
           "date": "2027-02-08",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2027-02-09",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -275,8 +274,7 @@
         "2027-11-02",
         "2027-11-15",
         "2027-11-20",
-        "2027-12-25",
-        "2027-12-31"
+        "2027-12-25"
       ]
     },
     "2028": {
@@ -290,14 +288,14 @@
         },
         {
           "date": "2028-02-28",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2028-02-29",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -413,8 +411,7 @@
         "2028-11-02",
         "2028-11-15",
         "2028-11-20",
-        "2028-12-25",
-        "2028-12-29"
+        "2028-12-25"
       ]
     },
     "2029": {
@@ -428,14 +425,14 @@
         },
         {
           "date": "2029-02-12",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2029-02-13",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -551,8 +548,7 @@
         "2029-11-02",
         "2029-11-15",
         "2029-11-20",
-        "2029-12-25",
-        "2029-12-31"
+        "2029-12-25"
       ]
     },
     "2030": {
@@ -566,14 +562,14 @@
         },
         {
           "date": "2030-03-04",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2030-03-05",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -689,8 +685,7 @@
         "2030-11-02",
         "2030-11-15",
         "2030-11-20",
-        "2030-12-25",
-        "2030-12-31"
+        "2030-12-25"
       ]
     },
     "2031": {
@@ -704,14 +699,14 @@
         },
         {
           "date": "2031-02-24",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2031-02-25",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -827,8 +822,7 @@
         "2031-11-02",
         "2031-11-15",
         "2031-11-20",
-        "2031-12-25",
-        "2031-12-31"
+        "2031-12-25"
       ]
     },
     "2032": {
@@ -842,14 +836,14 @@
         },
         {
           "date": "2032-02-09",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2032-02-10",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -965,8 +959,7 @@
         "2032-11-02",
         "2032-11-15",
         "2032-11-20",
-        "2032-12-25",
-        "2032-12-31"
+        "2032-12-25"
       ]
     },
     "2033": {
@@ -980,14 +973,14 @@
         },
         {
           "date": "2033-02-28",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2033-03-01",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1103,8 +1096,7 @@
         "2033-11-02",
         "2033-11-15",
         "2033-11-20",
-        "2033-12-25",
-        "2033-12-30"
+        "2033-12-25"
       ]
     },
     "2034": {
@@ -1118,14 +1110,14 @@
         },
         {
           "date": "2034-02-20",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2034-02-21",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1241,8 +1233,7 @@
         "2034-11-02",
         "2034-11-15",
         "2034-11-20",
-        "2034-12-25",
-        "2034-12-29"
+        "2034-12-25"
       ]
     },
     "2035": {
@@ -1256,14 +1247,14 @@
         },
         {
           "date": "2035-02-05",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2035-02-06",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1379,8 +1370,7 @@
         "2035-11-02",
         "2035-11-15",
         "2035-11-20",
-        "2035-12-25",
-        "2035-12-31"
+        "2035-12-25"
       ]
     },
     "2036": {
@@ -1394,14 +1384,14 @@
         },
         {
           "date": "2036-02-25",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2036-02-26",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1517,8 +1507,7 @@
         "2036-11-02",
         "2036-11-15",
         "2036-11-20",
-        "2036-12-25",
-        "2036-12-31"
+        "2036-12-25"
       ]
     },
     "2037": {
@@ -1532,14 +1521,14 @@
         },
         {
           "date": "2037-02-16",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2037-02-17",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1655,8 +1644,7 @@
         "2037-11-02",
         "2037-11-15",
         "2037-11-20",
-        "2037-12-25",
-        "2037-12-31"
+        "2037-12-25"
       ]
     },
     "2038": {
@@ -1670,14 +1658,14 @@
         },
         {
           "date": "2038-03-08",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2038-03-09",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1793,8 +1781,7 @@
         "2038-11-02",
         "2038-11-15",
         "2038-11-20",
-        "2038-12-25",
-        "2038-12-31"
+        "2038-12-25"
       ]
     },
     "2039": {
@@ -1808,14 +1795,14 @@
         },
         {
           "date": "2039-02-21",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2039-02-22",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -1931,8 +1918,7 @@
         "2039-11-02",
         "2039-11-15",
         "2039-11-20",
-        "2039-12-25",
-        "2039-12-30"
+        "2039-12-25"
       ]
     },
     "2040": {
@@ -1946,14 +1932,14 @@
         },
         {
           "date": "2040-02-13",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2040-02-14",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2069,8 +2055,7 @@
         "2040-11-02",
         "2040-11-15",
         "2040-11-20",
-        "2040-12-25",
-        "2040-12-31"
+        "2040-12-25"
       ]
     },
     "2041": {
@@ -2084,14 +2069,14 @@
         },
         {
           "date": "2041-03-04",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2041-03-05",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2207,8 +2192,7 @@
         "2041-11-02",
         "2041-11-15",
         "2041-11-20",
-        "2041-12-25",
-        "2041-12-31"
+        "2041-12-25"
       ]
     },
     "2042": {
@@ -2222,14 +2206,14 @@
         },
         {
           "date": "2042-02-17",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2042-02-18",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2345,8 +2329,7 @@
         "2042-11-02",
         "2042-11-15",
         "2042-11-20",
-        "2042-12-25",
-        "2042-12-31"
+        "2042-12-25"
       ]
     },
     "2043": {
@@ -2360,14 +2343,14 @@
         },
         {
           "date": "2043-02-09",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2043-02-10",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2483,8 +2466,7 @@
         "2043-11-02",
         "2043-11-15",
         "2043-11-20",
-        "2043-12-25",
-        "2043-12-31"
+        "2043-12-25"
       ]
     },
     "2044": {
@@ -2498,14 +2480,14 @@
         },
         {
           "date": "2044-02-29",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2044-03-01",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2621,8 +2603,7 @@
         "2044-11-02",
         "2044-11-15",
         "2044-11-20",
-        "2044-12-25",
-        "2044-12-30"
+        "2044-12-25"
       ]
     },
     "2045": {
@@ -2636,14 +2617,14 @@
         },
         {
           "date": "2045-02-20",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2045-02-21",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2759,8 +2740,7 @@
         "2045-11-02",
         "2045-11-15",
         "2045-11-20",
-        "2045-12-25",
-        "2045-12-29"
+        "2045-12-25"
       ]
     },
     "2046": {
@@ -2774,14 +2754,14 @@
         },
         {
           "date": "2046-02-05",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2046-02-06",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -2897,8 +2877,7 @@
         "2046-11-02",
         "2046-11-15",
         "2046-11-20",
-        "2046-12-25",
-        "2046-12-31"
+        "2046-12-25"
       ]
     },
     "2047": {
@@ -2912,14 +2891,14 @@
         },
         {
           "date": "2047-02-25",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2047-02-26",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -3035,8 +3014,7 @@
         "2047-11-02",
         "2047-11-15",
         "2047-11-20",
-        "2047-12-25",
-        "2047-12-31"
+        "2047-12-25"
       ]
     },
     "2048": {
@@ -3050,14 +3028,14 @@
         },
         {
           "date": "2048-02-17",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2048-02-18",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -3173,8 +3151,7 @@
         "2048-11-02",
         "2048-11-15",
         "2048-11-20",
-        "2048-12-25",
-        "2048-12-31"
+        "2048-12-25"
       ]
     },
     "2049": {
@@ -3188,14 +3165,14 @@
         },
         {
           "date": "2049-03-01",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2049-03-02",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -3311,8 +3288,7 @@
         "2049-11-02",
         "2049-11-15",
         "2049-11-20",
-        "2049-12-25",
-        "2049-12-31"
+        "2049-12-25"
       ]
     },
     "2050": {
@@ -3326,14 +3302,14 @@
         },
         {
           "date": "2050-02-21",
-          "name": "Carnaval",
+          "name": "Carnaval (segunda)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
         },
         {
           "date": "2050-02-22",
-          "name": "Carnaval",
+          "name": "Carnaval (terça)",
           "kind": "ponto facultativo / feriado bancário",
           "scope": "Brasil",
           "official": false
@@ -3449,8 +3425,7 @@
         "2050-11-02",
         "2050-11-15",
         "2050-11-20",
-        "2050-12-25",
-        "2050-12-30"
+        "2050-12-25"
       ]
     }
   }

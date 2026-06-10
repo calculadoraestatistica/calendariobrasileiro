@@ -1,0 +1,216 @@
+{
+  "year": 2039,
+  "stats": {
+    "days": 365,
+    "weekend_days": 105,
+    "holidays": 11,
+    "holidays_on_weekdays": 7,
+    "workdays": 253,
+    "bank_business_days": 250,
+    "iso_weeks": 52
+  },
+  "holidays": [
+    {
+      "date": "2039-01-01",
+      "name": "Confraternização Universal",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 662/1949, com alterações posteriores."
+    },
+    {
+      "date": "2039-02-21",
+      "name": "Carnaval (segunda)",
+      "kind": "ponto facultativo / feriado bancário",
+      "scope": "Brasil",
+      "official": false,
+      "note": "Não é feriado nacional civil; aparece no calendário bancário."
+    },
+    {
+      "date": "2039-02-22",
+      "name": "Carnaval (terça)",
+      "kind": "ponto facultativo / feriado bancário",
+      "scope": "Brasil",
+      "official": false,
+      "note": "Não é feriado nacional civil; aparece no calendário bancário."
+    },
+    {
+      "date": "2039-02-23",
+      "name": "Quarta-feira de Cinzas",
+      "kind": "expediente especial",
+      "scope": "Brasil",
+      "official": false,
+      "note": "Bancos com expediente parcial; muitas cidades com ponto facultativo."
+    },
+    {
+      "date": "2039-04-08",
+      "name": "Sexta-feira Santa",
+      "kind": "feriado religioso comum",
+      "scope": "Brasil",
+      "official": false,
+      "note": "Feriado religioso adotado por estados e municípios."
+    },
+    {
+      "date": "2039-04-10",
+      "name": "Páscoa",
+      "kind": "data comemorativa",
+      "scope": "Brasil",
+      "official": false,
+      "note": "Domingo de Páscoa."
+    },
+    {
+      "date": "2039-04-21",
+      "name": "Tiradentes",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 10.607/2002."
+    },
+    {
+      "date": "2039-05-01",
+      "name": "Dia do Trabalho",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 10.607/2002."
+    },
+    {
+      "date": "2039-06-09",
+      "name": "Corpus Christi",
+      "kind": "ponto facultativo / feriado bancário",
+      "scope": "Brasil",
+      "official": false,
+      "note": "Não é feriado nacional civil; é feriado municipal/bancário."
+    },
+    {
+      "date": "2039-09-07",
+      "name": "Independência do Brasil",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 10.607/2002."
+    },
+    {
+      "date": "2039-10-12",
+      "name": "Nossa Senhora Aparecida",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 6.802/1980."
+    },
+    {
+      "date": "2039-11-02",
+      "name": "Finados",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 10.607/2002."
+    },
+    {
+      "date": "2039-11-15",
+      "name": "Proclamação da República",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 10.607/2002."
+    },
+    {
+      "date": "2039-11-20",
+      "name": "Dia Nacional de Zumbi e da Consciência Negra",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 14.759/2023."
+    },
+    {
+      "date": "2039-12-25",
+      "name": "Natal",
+      "kind": "feriado nacional",
+      "scope": "Brasil",
+      "official": true,
+      "note": "Lei nº 10.607/2002."
+    }
+  ],
+  "best_vacation_windows": [
+    {
+      "start": "2039-01-01",
+      "end": "2039-01-04",
+      "days_off": 4,
+      "vacation_days": 2,
+      "ratio": 2.0,
+      "holidays": "Confraternização Universal"
+    },
+    {
+      "start": "2039-01-06",
+      "end": "2039-01-09",
+      "days_off": 4,
+      "vacation_days": 2,
+      "ratio": 2.0,
+      "holidays": "fins de semana"
+    },
+    {
+      "start": "2039-01-13",
+      "end": "2039-01-16",
+      "days_off": 4,
+      "vacation_days": 2,
+      "ratio": 2.0,
+      "holidays": "fins de semana"
+    },
+    {
+      "start": "2039-04-07",
+      "end": "2039-04-10",
+      "days_off": 4,
+      "vacation_days": 1,
+      "ratio": 4.0,
+      "holidays": "Sexta-feira Santa"
+    },
+    {
+      "start": "2039-04-21",
+      "end": "2039-04-24",
+      "days_off": 4,
+      "vacation_days": 1,
+      "ratio": 4.0,
+      "holidays": "Tiradentes"
+    },
+    {
+      "start": "2039-06-09",
+      "end": "2039-06-12",
+      "days_off": 4,
+      "vacation_days": 1,
+      "ratio": 4.0,
+      "holidays": "Corpus Christi"
+    },
+    {
+      "start": "2039-09-03",
+      "end": "2039-09-07",
+      "days_off": 5,
+      "vacation_days": 2,
+      "ratio": 2.5,
+      "holidays": "Independência do Brasil"
+    },
+    {
+      "start": "2039-10-08",
+      "end": "2039-10-12",
+      "days_off": 5,
+      "vacation_days": 2,
+      "ratio": 2.5,
+      "holidays": "Nossa Senhora Aparecida"
+    },
+    {
+      "start": "2039-10-29",
+      "end": "2039-11-02",
+      "days_off": 5,
+      "vacation_days": 2,
+      "ratio": 2.5,
+      "holidays": "Finados"
+    },
+    {
+      "start": "2039-11-12",
+      "end": "2039-11-15",
+      "days_off": 4,
+      "vacation_days": 1,
+      "ratio": 4.0,
+      "holidays": "Proclamação da República"
+    }
+  ]
+}
