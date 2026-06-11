@@ -460,6 +460,10 @@ def css_text() -> str:
 .breadcrumbs{background:#fff;border-bottom:1px solid var(--line);padding:.7rem 0;font-size:.9rem;color:var(--muted);margin:0}.breadcrumbs a{color:#0f5f59;text-decoration:none;font-weight:700}.breadcrumbs a:hover{text-decoration:underline}.breadcrumbs [aria-current=page]{color:var(--ink);font-weight:800}
 .ad-slot{padding:.9rem 0;background:transparent}.ad-slot ins{min-height:90px;display:block;border:1px dashed #cbd5cf;border-radius:7px;background:#fff;color:var(--muted)}.ad-slot ins:empty::before{content:"Espaço publicitário";display:flex;align-items:center;justify-content:center;height:90px;color:var(--muted);font-size:.85rem;letter-spacing:.04em}.ad-slot--header ins{min-height:100px}.ad-slot--mid ins{min-height:250px}.ad-slot--footer ins{min-height:100px}
 .faq{display:flex;flex-direction:column;gap:.65rem}.faq__item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:.75rem 1rem}.faq__item summary{cursor:pointer;font-weight:800;color:#0f5f59;outline:none}.faq__item[open] summary{margin-bottom:.5rem}.faq__item p{margin:.25rem 0 0;color:#33403a}
+.add-cell{font-size:.84rem;white-space:nowrap}.add-cell a{color:#0f766e;text-decoration:none;font-weight:700}.add-cell a:hover{text-decoration:underline}.export-bar{margin:0 0 1rem;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}.export-bar .btn{padding:.45rem .9rem;font-size:.92rem}
+.field input:focus-visible,.field select:focus-visible,.btn:focus-visible,.tag-link:focus-visible,.main-nav a:focus-visible,a.card:focus-visible,.breadcrumbs a:focus-visible,.faq__item summary:focus-visible{outline:3px solid #fbbf24;outline-offset:2px;border-radius:6px}
+.field input,.field select{border-color:#94a3a0}
+@media print{.site-header,.main-nav,.footer,.ad-slot,.no-print,.hero-actions,.faq,.export-bar,.add-cell,.skip-link,.tag-cloud,.breadcrumbs{display:none!important}body{background:#fff;color:#000;font-size:11pt}.section{padding:.4rem 0}.container{width:100%}.hero{padding:0;background:#fff}.hero h1{font-size:1.4rem}.lead{font-size:1rem;color:#222}.table-wrap{border:0;overflow:visible}table{min-width:0;font-size:10pt}th{background:#eee;color:#000}th:last-child,td:last-child{display:none}.card{break-inside:avoid;box-shadow:none;border-color:#aaa}.notice{background:#fff;border-color:#bbb;color:#000}a{color:#000;text-decoration:none}a[href]:after{content:""}.month-grid{grid-template-columns:repeat(3,1fr);gap:.5rem;page-break-inside:auto}.month{break-inside:avoid;padding:.4rem}}
 """
 
 
@@ -1062,9 +1066,35 @@ def stats_cards(stats: dict) -> str:
     ) + "</div>"
 
 
+def gcal_link(h: Holiday) -> str:
+    start = h.date.strftime("%Y%m%d")
+    end = (h.date + timedelta(days=1)).strftime("%Y%m%d")
+    text = html.escape(h.name, quote=True).replace(" ", "+")
+    details = html.escape(h.kind + (". " + h.note if h.note else ""), quote=True).replace(" ", "+")
+    return (
+        f"https://calendar.google.com/calendar/u/0/r/eventedit"
+        f"?text={text}&dates={start}/{end}&details={details}"
+    )
+
+
+def outlook_link(h: Holiday) -> str:
+    start = h.date.strftime("%Y-%m-%d")
+    end = (h.date + timedelta(days=1)).strftime("%Y-%m-%d")
+    from urllib.parse import quote
+    text = quote(h.name)
+    body = quote(h.kind + (". " + h.note if h.note else ""))
+    return (
+        f"https://outlook.live.com/calendar/0/deeplink/compose"
+        f"?path=/calendar/action/compose&rru=addevent"
+        f"&subject={text}&startdt={start}&enddt={end}&allday=true&body={body}"
+    )
+
+
 def holiday_table(items: list[Holiday]) -> str:
     rows = []
     for h in items:
+        gcal = gcal_link(h)
+        ol = outlook_link(h)
         rows.append(
             "<tr>"
             f"<td>{fmt_short(h.date)}</td>"
@@ -1072,13 +1102,51 @@ def holiday_table(items: list[Holiday]) -> str:
             f"<td><strong>{html.escape(h.name)}</strong><br><span class=\"muted\">{html.escape(h.kind)}</span></td>"
             f"<td>{'Sim' if h.official else 'Não / depende'}</td>"
             f"<td>{html.escape(h.note)}</td>"
+            f'<td class="add-cell no-print"><a href="{gcal}" target="_blank" rel="nofollow noopener" title="Adicionar ao Google Calendar">GCal</a> · '
+            f'<a href="{ol}" target="_blank" rel="nofollow noopener" title="Adicionar ao Outlook">Outlook</a></td>'
             "</tr>"
         )
     return (
         '<div class="table-wrap"><table><thead><tr>'
-        '<th>Data</th><th>Dia</th><th>Feriado</th><th>Legal</th><th>Observação</th>'
+        '<th>Data</th><th>Dia</th><th>Feriado</th><th>Legal</th><th>Observação</th><th class="no-print">Adicionar</th>'
         '</tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>"
     )
+
+
+def make_ics(year: int, items: list[Holiday], scope_label: str) -> str:
+    """Build an iCalendar (.ics) string with VEVENTs for each holiday."""
+    now = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        f"PRODID:-//{SITE_NAME}//Feriados {scope_label} {year}//PT",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        f"X-WR-CALNAME:Feriados {scope_label} {year}",
+        f"X-WR-CALDESC:Feriados nacionais brasileiros — fonte {DOMAIN}",
+        "X-WR-TIMEZONE:America/Sao_Paulo",
+    ]
+    for h in items:
+        start = h.date.strftime("%Y%m%d")
+        end = (h.date + timedelta(days=1)).strftime("%Y%m%d")
+        uid = f"{h.date.isoformat()}-{abs(hash(h.name)) % 10**8}@calendariobrasileiro.com.br"
+        summary = h.name.replace(",", "\\,").replace(";", "\\;")
+        desc_raw = h.kind + (". " + h.note if h.note else "")
+        desc = desc_raw.replace(",", "\\,").replace(";", "\\;").replace("\n", "\\n")
+        lines.extend([
+            "BEGIN:VEVENT",
+            f"UID:{uid}",
+            f"DTSTAMP:{now}",
+            f"DTSTART;VALUE=DATE:{start}",
+            f"DTEND;VALUE=DATE:{end}",
+            f"SUMMARY:{summary}",
+            f"DESCRIPTION:{desc}",
+            "TRANSP:TRANSPARENT",
+            "STATUS:CONFIRMED",
+            "END:VEVENT",
+        ])
+    lines.append("END:VCALENDAR")
+    return "\r\n".join(lines) + "\r\n"
 
 
 def year_overview(year: int) -> str:
@@ -1238,7 +1306,14 @@ def render_holidays(year: int) -> None:
         actions=f'<a class="btn btn--primary" href="calendario-{year}.html">Ver calendário</a><a class="btn btn--ghost" href="feriados-bancarios-{year}.html">Feriados bancários</a>',
     )
     body += ad_slot("header")
-    body += f'<section class="section"><div class="container"><h2>Feriados nacionais e datas móveis de {year}</h2>{holiday_table(items)}<p class="notice">Carnaval, Corpus Christi e Sexta-feira Santa têm tratamento específico: podem não ser feriado nacional civil mas aparecem em calendários bancários e municipais.</p></div></section>'
+    ics_name = f"feriados-{year}.ics"
+    (ROOT / ics_name).write_text(make_ics(year, items, "Brasil"), encoding="utf-8")
+    download_box = (
+        f'<p class="export-bar no-print">'
+        f'<a class="btn btn--ghost" href="{ics_name}" download>↓ Baixar .ics ({year})</a> '
+        f'<span class="muted">Importe no Google Calendar, Apple Calendar, Outlook, etc.</span></p>'
+    )
+    body += f'<section class="section"><div class="container"><h2>Feriados nacionais e datas móveis de {year}</h2>{download_box}{holiday_table(items)}<p class="notice">Carnaval, Corpus Christi e Sexta-feira Santa têm tratamento específico: podem não ser feriado nacional civil mas aparecem em calendários bancários e municipais.</p></div></section>'
     body += ad_slot("mid")
     faq = [
         (f"Quantos feriados nacionais existem em {year}?", f"Em {year} há {sum(1 for h in items if h.official)} feriados nacionais civis no Brasil, contando todas as datas legais previstas em lei federal."),
