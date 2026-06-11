@@ -768,6 +768,17 @@ def ensure_base_files() -> None:
 
 
 def json_ld_webpage(title: str, description: str, url: str) -> dict:
+    publisher = {
+        "@type": "Organization",
+        "name": SITE_NAME_DISPLAY,
+        "url": DOMAIN + "/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": DOMAIN + "/favicon-512.png",
+            "width": 512,
+            "height": 512,
+        },
+    }
     return {
         "@context": "https://schema.org",
         "@type": "WebPage",
@@ -775,7 +786,8 @@ def json_ld_webpage(title: str, description: str, url: str) -> dict:
         "description": description,
         "url": url,
         "inLanguage": "pt-BR",
-        "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": DOMAIN + "/"},
+        "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": DOMAIN + "/", "publisher": publisher},
+        "publisher": publisher,
     }
 
 
