@@ -169,9 +169,9 @@ def validate_calendar_data(errors: list[str]) -> None:
     data = json.loads(data_path.read_text(encoding="utf-8"))
     years = data.get("years", {})
     known = {
-        2026: {"Páscoa": "2026-04-05", "Carnaval": "2026-02-16", "Corpus Christi": "2026-06-04"},
-        2027: {"Páscoa": "2027-03-28", "Carnaval": "2027-02-08", "Corpus Christi": "2027-05-27"},
-        2028: {"Páscoa": "2028-04-16", "Carnaval": "2028-02-28", "Corpus Christi": "2028-06-15"},
+        2026: {"Páscoa": "2026-04-05", "Carnaval (segunda)": "2026-02-16", "Corpus Christi": "2026-06-04"},
+        2027: {"Páscoa": "2027-03-28", "Carnaval (segunda)": "2027-02-08", "Corpus Christi": "2027-05-27"},
+        2028: {"Páscoa": "2028-04-16", "Carnaval (segunda)": "2028-02-28", "Corpus Christi": "2028-06-15"},
     }
     for year in range(START_YEAR, END_YEAR + 1):
         if str(year) not in years:
