@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subtrair Dias Úteis - calcule a data anterior</title>
+<meta name="description" content="Recue N dias úteis a partir de uma data, considerando fins de semana e feriados nacionais brasileiros.">
+<link rel="canonical" href="https://calendariobrasileiro.com.br/subtrair-dias-uteis.html">
+<meta name="theme-color" content="#166534">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calendário Brasileiro">
+<meta property="og:title" content="Subtrair Dias Úteis - calcule a data anterior">
+<meta property="og:description" content="Recue N dias úteis a partir de uma data, considerando fins de semana e feriados nacionais brasileiros.">
+<meta property="og:url" content="https://calendariobrasileiro.com.br/subtrair-dias-uteis.html">
+<meta property="og:image" content="https://calendariobrasileiro.com.br/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Subtrair Dias Úteis - calcule a data anterior">
+<meta name="twitter:description" content="Recue N dias úteis a partir de uma data, considerando fins de semana e feriados nacionais brasileiros.">
+<meta name="twitter:image" content="https://calendariobrasileiro.com.br/img/og-default.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7516029395999799" crossorigin="anonymous"></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Subtrair Dias Úteis - calcule a data anterior", "description": "Recue N dias úteis a partir de uma data, considerando fins de semana e feriados nacionais brasileiros.", "url": "https://calendariobrasileiro.com.br/subtrair-dias-uteis.html", "inLanguage": "pt-BR", "isPartOf": {"@type": "WebSite", "name": "Calendario Brasileiro", "url": "https://calendariobrasileiro.com.br/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://calendariobrasileiro.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Subtrair dias úteis"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Considera quais feriados?", "acceptedAnswer": {"@type": "Answer", "text": "Por padrão, os feriados nacionais civis brasileiros. Mude para 'bancários' se o seu prazo seguir o calendário FEBRABAN/ANBIMA."}}, {"@type": "Question", "name": "Considera feriados estaduais?", "acceptedAnswer": {"@type": "Answer", "text": "Não nesta versão. Para uso jurídico estadual, verifique também o calendário forense local."}}, {"@type": "Question", "name": "A data final entra na contagem?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Começamos a recuar a partir do dia anterior à data final informada."}}, {"@type": "Question", "name": "Por que mostra dias corridos também?", "acceptedAnswer": {"@type": "Answer", "text": "Para você ter o referencial entre o intervalo no calendário (com fins de semana e feriados) e o intervalo em dias úteis."}}, {"@type": "Question", "name": "Posso recuar mais de 1.000 dias úteis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. O limite interno cobre vários anos para evitar travamento, mas qualquer valor razoável funciona."}}, {"@type": "Question", "name": "Vale para prazos do CPC?", "acceptedAnswer": {"@type": "Answer", "text": "Pode servir como referência, mas o CPC tem regras específicas (intimação, suspensão de prazo, recesso). Confirme com a norma aplicável."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="site-header"><div class="container site-header__inner">
+<a class="brand" href="index.html"><svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#166534"/><rect x="12" y="15" width="40" height="37" rx="5" fill="#fff"/><rect x="12" y="15" width="40" height="10" rx="5" fill="#14532d"/><path d="M20 34h8v8h-8zm14 0h8v8h-8z" fill="#166534"/></svg><span>Calendário Brasileiro</span></a>
+<nav class="main-nav" aria-label="Menu principal"><ul><li><a href="calendario-2026.html">Calendário</a></li><li><a href="feriados-2026.html">Feriados</a></li><li><a href="dias-uteis-2026.html">Dias úteis</a></li><li><a href="feriados-bancarios-2026.html">Bancário</a></li><li><a href="feriados-estaduais.html">Estados e capitais</a></li><li><a href="calcular-dias-uteis.html" aria-current="page">Calculadoras</a></li></ul></nav>
+</div></header>
+<main id="conteudo"><nav class="breadcrumbs" aria-label="Trilha de navegação"><div class="container"><a href="index.html">Início</a><span aria-hidden="true"> &rsaquo; </span><span aria-current="page">Subtrair dias úteis</span></div></nav><section class="hero"><div class="container hero-grid"><div><span class="eyebrow">Calendário Brasileiro · atualizado para 2026</span><h1>Subtrair Dias Úteis</h1><p class="lead">Recue N dias úteis a partir de uma data final. Útil para descobrir até quando uma tarefa precisa começar para cumprir um prazo.</p><div class="hero-actions"><a class="btn btn--primary" href="adicionar-dias-uteis.html">Adicionar dias úteis</a><a class="btn btn--ghost" href="calcular-dias-uteis.html">Calcular intervalo</a></div></div><aside class="quick-panel"><h2>Junho 2026</h2><div class="mini-calendar">
+<span class="head">seg</span>
+<span class="head">ter</span>
+<span class="head">qua</span>
+<span class="head">qui</span>
+<span class="head">sex</span>
+<span class="head">sáb</span>
+<span class="head">dom</span>
+<span class="" data-date="2026-06-01">1</span>
+<span class="" data-date="2026-06-02">2</span>
+<span class="" data-date="2026-06-03">3</span>
+<span class="holiday" data-date="2026-06-04" title="Corpus Christi">4</span>
+<span class="" data-date="2026-06-05">5</span>
+<span class="weekend" data-date="2026-06-06">6</span>
+<span class="weekend" data-date="2026-06-07">7</span>
+<span class="" data-date="2026-06-08">8</span>
+<span class="" data-date="2026-06-09">9</span>
+<span class="" data-date="2026-06-10">10</span>
+<span class="" data-date="2026-06-11">11</span>
+<span class="" data-date="2026-06-12">12</span>
+<span class="weekend" data-date="2026-06-13">13</span>
+<span class="weekend" data-date="2026-06-14">14</span>
+<span class="" data-date="2026-06-15">15</span>
+<span class="" data-date="2026-06-16">16</span>
+<span class="" data-date="2026-06-17">17</span>
+<span class="" data-date="2026-06-18">18</span>
+<span class="" data-date="2026-06-19">19</span>
+<span class="weekend" data-date="2026-06-20">20</span>
+<span class="weekend" data-date="2026-06-21">21</span>
+<span class="" data-date="2026-06-22">22</span>
+<span class="" data-date="2026-06-23">23</span>
+<span class="" data-date="2026-06-24">24</span>
+<span class="" data-date="2026-06-25">25</span>
+<span class="" data-date="2026-06-26">26</span>
+<span class="weekend" data-date="2026-06-27">27</span>
+<span class="weekend" data-date="2026-06-28">28</span>
+<span class="" data-date="2026-06-29">29</span>
+<span class="" data-date="2026-06-30">30</span>
+<span class="empty"></span>
+<span class="empty"></span>
+<span class="empty"></span>
+<span class="empty"></span>
+<span class="empty"></span>
+</div><div class="calendar-legend" aria-label="Legenda de cores do calendário">
+<span class="calendar-legend__item"><span class="calendar-legend__swatch calendar-legend__swatch--holiday"></span>Feriado ou folga considerada</span>
+<span class="calendar-legend__item"><span class="calendar-legend__swatch calendar-legend__swatch--special"></span>Data especial</span>
+<span class="calendar-legend__item"><span class="calendar-legend__swatch calendar-legend__swatch--weekend"></span>Fim de semana</span>
+<span class="calendar-legend__item"><span class="calendar-legend__swatch calendar-legend__swatch--today"></span>Hoje</span>
+</div><div class="quick-panel__holidays"><h3>Feriados deste mês</h3><ul><li><strong>04/06</strong> <span>Corpus Christi</span></li></ul></div></aside></div></section><aside class="ad-slot ad-slot--header" aria-label="Espaço publicitário" data-ad-position="header"><div class="container"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7516029395999799" data-ad-slot="HEADER_SLOT_PLACEHOLDER" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></aside><section class="section"><div class="container"><div class="tool" data-tool="sub">
+<div class="tool-grid">
+<div class="field"><label for="sub-start">Data final</label><input id="sub-start" type="date" value="2026-06-11"></div>
+<div class="field"><label for="sub-days">Dias úteis a recuar</label><input id="sub-days" type="number" min="0" value="5"></div>
+<div class="field"><label for="sub-mode">Calendário</label><select id="sub-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option></select></div>
+</div>
+<button class="btn btn--primary" id="sub-run" type="button">Calcular</button>
+<div class="result-box" id="sub-result" hidden aria-live="polite" aria-atomic="true"></div>
+</div></div></section>
+<script>
+(function(){
+  var data=window.CB_CALENDAR_DATA||{};
+  var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+  function parseUTC(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}
+  function isoDate(d){return d.toISOString().slice(0,10);}
+  function fmt(d){return d.toLocaleDateString('pt-BR',{timeZone:'UTC'});}
+  function addDays(d,n){var x=new Date(d);x.setUTCDate(x.getUTCDate()+n);return x;}
+  function isWeekend(d){var w=d.getUTCDay();return w===0||w===6;}
+  function excluded(year,mode){
+    var y=data.years&&data.years[String(year)];
+    if(!y)return new Set();
+    return new Set(mode==='bank'?y.bankExcluded:y.standardExcluded);
+  }
+  function isUseful(d,mode){
+    if(isWeekend(d))return false;
+    return !excluded(d.getUTCFullYear(),mode).has(isoDate(d));
+  }
+  function calc(){
+    var start=parseUTC(document.getElementById('sub-start').value);
+    var n=Number(document.getElementById('sub-days').value||0);
+    var mode=document.getElementById('sub-mode').value;
+    var box=document.getElementById('sub-result');
+    box.hidden=false;
+    if(!start||n<0){box.textContent='Informe data e quantidade válida.';return;}
+    var d=new Date(start);
+    var rem=n;
+    var steps=0;
+    while(rem>0&&steps<3650){
+      d=addDays(d,-1);
+      steps++;
+      if(isUseful(d,mode))rem--;
+    }
+    if(rem>0){box.textContent='Não foi possível recuar a quantidade pedida.';return;}
+    var corridos=Math.round((start-d)/86400000);
+    var wd=WEEKDAYS_LONG[d.getUTCDay()];
+    box.innerHTML=
+      '<p>Data recuada: <strong>'+fmt(d)+'</strong> ('+wd+').</p>'+
+      '<p class="muted">Foram '+corridos+' dia(s) corridos para recuar '+n+' dia(s) '+(mode==='bank'?'útil(eis) bancário(s)':'útil(eis)')+'.</p>';
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('sub-run').addEventListener('click',calc);
+  });
+})();
+</script><aside class="ad-slot ad-slot--mid" aria-label="Espaço publicitário" data-ad-position="mid"><div class="container"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7516029395999799" data-ad-slot="MID_SLOT_PLACEHOLDER" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></aside><section class="section"><div class="container container--narrow prose">
+<h2>Para que serve</h2>
+<p>Quando você sabe o prazo final e quer descobrir até quando precisa começar, esta calculadora é o caminho inverso da adição de dias úteis. Útil para tribunais, contratos, processos administrativos e planejamento de equipe.</p>
+<h2>Como calculamos</h2>
+<p>Recuamos um dia por vez a partir da data final. Pulamos sábados, domingos e feriados nacionais (ou bancários, conforme o modo escolhido) até completar a quantidade pedida de dias úteis.</p>
+<h2>Exemplo</h2>
+<p>Para entregar um documento em 15 dias úteis antes de uma audiência marcada para 30/10/2026 (sexta), recuar 15 dias úteis devolve 09/10/2026 (sexta).</p>
+</div></section><section class="section"><div class="container"><div class="section-title"><div><h2>Outras ferramentas</h2><p>Continue explorando as calculadoras de data.</p></div></div><div class="grid"><a class="card" href="calcular-dias-uteis.html"><h3>Calcular dias úteis</h3><p class="muted">Conte dias úteis entre duas datas no Brasil.</p></a><a class="card" href="adicionar-dias-uteis.html"><h3>Adicionar dias úteis</h3><p class="muted">Some N dias úteis a uma data inicial.</p></a><a class="card" href="numero-da-semana.html"><h3>Número da semana</h3><p class="muted">Descubra a semana ISO de qualquer data.</p></a><a class="card" href="data-da-semana.html"><h3>Data da semana ISO</h3><p class="muted">Dado ano + semana + dia, descubra a data.</p></a><a class="card" href="calculadora-idade.html"><h3>Calculadora de idade</h3><p class="muted">Idade exata em anos, meses e dias.</p></a><a class="card" href="diferenca-entre-datas.html"><h3>Diferença entre datas</h3><p class="muted">Anos, meses, semanas, dias, horas e minutos.</p></a></div></div></section><section class="section" id="faq"><div class="container container--narrow"><div class="section-title"><div><h2>Perguntas frequentes</h2><p>Respostas rápidas para as dúvidas mais comuns.</p></div></div><div class="faq"><details class="faq__item"><summary>Considera quais feriados?</summary><p>Por padrão, os feriados nacionais civis brasileiros. Mude para &#x27;bancários&#x27; se o seu prazo seguir o calendário FEBRABAN/ANBIMA.</p></details><details class="faq__item"><summary>Considera feriados estaduais?</summary><p>Não nesta versão. Para uso jurídico estadual, verifique também o calendário forense local.</p></details><details class="faq__item"><summary>A data final entra na contagem?</summary><p>Não. Começamos a recuar a partir do dia anterior à data final informada.</p></details><details class="faq__item"><summary>Por que mostra dias corridos também?</summary><p>Para você ter o referencial entre o intervalo no calendário (com fins de semana e feriados) e o intervalo em dias úteis.</p></details><details class="faq__item"><summary>Posso recuar mais de 1.000 dias úteis?</summary><p>Sim. O limite interno cobre vários anos para evitar travamento, mas qualquer valor razoável funciona.</p></details><details class="faq__item"><summary>Vale para prazos do CPC?</summary><p>Pode servir como referência, mas o CPC tem regras específicas (intimação, suspensão de prazo, recesso). Confirme com a norma aplicável.</p></details></div></div></section></main>
+<footer class="footer"><div class="container footer-grid">
+<div><a class="brand brand--footer" href="index.html"><svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#166534"/><rect x="12" y="15" width="40" height="37" rx="5" fill="#fff"/><rect x="12" y="15" width="40" height="10" rx="5" fill="#14532d"/><path d="M20 34h8v8h-8zm14 0h8v8h-8z" fill="#166534"/></svg><span>Calendário Brasileiro</span></a><p>Calendários, feriados e dias úteis do Brasil.</p><p class="muted-on-dark">Para uso jurídico, financeiro ou trabalhista, consulte sempre a fonte oficial.</p></div>
+<div><h3>Calendário</h3><ul><li><a href="calendario-2026.html">Calendário 2026</a></li><li><a href="feriados-2026.html">Feriados 2026</a></li><li><a href="dias-uteis-2026.html">Dias úteis 2026</a></li><li><a href="melhores-dias-para-folga-2026.html">Melhores folgas</a></li></ul></div>
+<div><h3>Calculadoras</h3><ul><li><a href="calcular-dias-uteis.html">Calcular dias úteis</a></li><li><a href="adicionar-dias-uteis.html">Adicionar dias úteis</a></li><li><a href="subtrair-dias-uteis.html">Subtrair dias úteis</a></li><li><a href="numero-da-semana.html">Número da semana</a></li><li><a href="data-da-semana.html">Data da semana ISO</a></li><li><a href="calculadora-idade.html">Calculadora de idade</a></li><li><a href="diferenca-entre-datas.html">Diferença entre datas</a></li><li><a href="countdown.html">Contagem regressiva</a></li><li><a href="proximo-feriado.html">Próximo feriado</a></li><li><a href="dia-da-semana.html">Dia da semana</a></li><li><a href="data-mais-dias.html">Data ± N dias</a></li><li><a href="calendario-bancario.html">Calendário bancário</a></li></ul></div>
+<div><h3>Site</h3><ul><li><a href="sobre.html">Sobre</a></li><li><a href="fontes.html">Fontes</a></li><li><a href="contato.html">Contato</a></li><li><a href="privacidade.html">Privacidade</a></li><li><a href="termos.html">Termos</a></li><li><a href="apoiar.html">Apoiar</a></li><li><a href="sitemap.xml">Sitemap</a></li></ul></div>
+</div></footer>
+<script src="js/calendar-data.js"></script>
+<script src="js/calendar-tools.js"></script>
+<script src="js/today.js"></script>
+</body>
+</html>

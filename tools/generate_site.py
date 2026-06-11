@@ -24,12 +24,18 @@ import calendar
 import html
 import json
 import struct
+import sys
 import unicodedata
 import zlib
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable
+
+# Make the local "tools" folder importable so we can pull in the extra-tool
+# renderers without requiring the user to set PYTHONPATH.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from extra_tool_pages import render_all as render_extra_tools  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -935,7 +941,7 @@ def layout(
 <footer class="footer"><div class="container footer-grid">
 <div><a class="brand brand--footer" href="index.html">{brand_svg_inline()}<span>{SITE_NAME_DISPLAY}</span></a><p>Calendários, feriados e dias úteis do Brasil.</p><p class="muted-on-dark">Para uso jurídico, financeiro ou trabalhista, consulte sempre a fonte oficial.</p></div>
 <div><h3>Calendário</h3><ul><li><a href="calendario-{nav_year}.html">Calendário {nav_year}</a></li><li><a href="feriados-{nav_year}.html">Feriados {nav_year}</a></li><li><a href="dias-uteis-{nav_year}.html">Dias úteis {nav_year}</a></li><li><a href="melhores-dias-para-folga-{nav_year}.html">Melhores folgas</a></li></ul></div>
-<div><h3>Ferramentas</h3><ul><li><a href="calcular-dias-uteis.html">Calcular dias úteis</a></li><li><a href="adicionar-dias-uteis.html">Adicionar dias úteis</a></li><li><a href="numero-da-semana.html">Número da semana</a></li><li><a href="calendario-bancario.html">Calendário bancário</a></li></ul></div>
+<div><h3>Calculadoras</h3><ul><li><a href="calcular-dias-uteis.html">Calcular dias úteis</a></li><li><a href="adicionar-dias-uteis.html">Adicionar dias úteis</a></li><li><a href="subtrair-dias-uteis.html">Subtrair dias úteis</a></li><li><a href="numero-da-semana.html">Número da semana</a></li><li><a href="data-da-semana.html">Data da semana ISO</a></li><li><a href="calculadora-idade.html">Calculadora de idade</a></li><li><a href="diferenca-entre-datas.html">Diferença entre datas</a></li><li><a href="countdown.html">Contagem regressiva</a></li><li><a href="proximo-feriado.html">Próximo feriado</a></li><li><a href="dia-da-semana.html">Dia da semana</a></li><li><a href="data-mais-dias.html">Data ± N dias</a></li><li><a href="calendario-bancario.html">Calendário bancário</a></li></ul></div>
 <div><h3>Site</h3><ul><li><a href="sobre.html">Sobre</a></li><li><a href="fontes.html">Fontes</a></li><li><a href="contato.html">Contato</a></li><li><a href="privacidade.html">Privacidade</a></li><li><a href="termos.html">Termos</a></li><li><a href="apoiar.html">Apoiar</a></li><li><a href="sitemap.xml">Sitemap</a></li></ul></div>
 </div></footer>
 <script src="js/calendar-data.js"></script>
@@ -1825,7 +1831,7 @@ def write_calendarios_json(start: int, end: int) -> None:
 
 def write_sitemap(start: int, end: int) -> None:
     today_iso = date.today().isoformat()
-    urls: list[str] = ["", "calcular-dias-uteis.html", "adicionar-dias-uteis.html", "numero-da-semana.html", "calendario-bancario.html", "feriados-estaduais.html", "sobre.html", "fontes.html", "contato.html", "privacidade.html", "termos.html", "apoiar.html"]
+    urls: list[str] = ["", "calcular-dias-uteis.html", "adicionar-dias-uteis.html", "subtrair-dias-uteis.html", "numero-da-semana.html", "data-da-semana.html", "calculadora-idade.html", "diferenca-entre-datas.html", "countdown.html", "proximo-feriado.html", "dia-da-semana.html", "data-mais-dias.html", "calendario-bancario.html", "feriados-estaduais.html", "sobre.html", "fontes.html", "contato.html", "privacidade.html", "termos.html", "apoiar.html"]
     for year in range(start, end + 1):
         urls.append(f"calendario-{year}.html")
         for slug in MONTH_SLUGS:
@@ -1912,6 +1918,7 @@ def generate(start: int, end: int) -> None:
 
     render_index(ACTIVE_YEAR)
     render_tools()
+    render_extra_tools(ROOT, layout)
     render_about()
     render_sources()
     render_contact()
