@@ -979,11 +979,32 @@ def month_calendar_html(year: int, month: int, mini: bool = False, uf: str | Non
     return "\n".join(parts)
 
 
+def quick_panel_holidays_text(year: int, month: int) -> str:
+    """Lista textual dos feriados do mes corrente p/ o quick-panel."""
+    items: list[Holiday] = []
+    for h in national_holidays(year):
+        if h.date.month == month:
+            items.append(h)
+    if not items:
+        return '<p class="quick-panel__nohol muted">Sem feriados nacionais neste mês.</p>'
+    rows = []
+    for h in sorted(items, key=lambda x: x.date):
+        rows.append(
+            f'<li><strong>{h.date.day:02d}/{h.date.month:02d}</strong> '
+            f'<span>{html.escape(h.name)}</span></li>'
+        )
+    return (
+        '<div class="quick-panel__holidays"><h3>Feriados deste mês</h3>'
+        f'<ul>{"".join(rows)}</ul></div>'
+    )
+
+
 def mini_month(year: int, month: int, uf: str | None = None, city_key: str | None = None) -> str:
     return (
         f"<h2>{MONTHS[month-1].capitalize()} {year}</h2>"
         + month_calendar_html(year, month, mini=True, uf=uf, city_key=city_key)
         + mini_calendar_legend()
+        + quick_panel_holidays_text(year, month)
     )
 
 
@@ -994,8 +1015,8 @@ def hero(
     panel: tuple[int, int] | None = None,
     actions: str | None = None,
 ) -> str:
-    if panel is None:
-        panel = (ACTIVE_YEAR, date.today().month)
+    # Quick-panel SEMPRE mostra o mes corrente, independente do panel passado
+    panel = (date.today().year, date.today().month)
     side = mini_month(panel[0], panel[1])
     eyebrow = eyebrow or f"Calendário Brasileiro · atualizado para {ACTIVE_YEAR}"
     actions = actions or f'<a class="btn btn--primary" href="calcular-dias-uteis.html">Calcular dias úteis</a><a class="btn btn--ghost" href="feriados-{ACTIVE_YEAR}.html">Ver feriados {ACTIVE_YEAR}</a>'
