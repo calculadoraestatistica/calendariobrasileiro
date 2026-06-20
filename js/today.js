@@ -9,4 +9,30 @@
       el.classList.add('today');
     }
   }
+  // Hamburger menu toggle (mobile)
+  var btn=document.querySelector('.nav-toggle');
+  var nav=document.getElementById('main-nav');
+  if(btn && nav){
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      btn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+    });
+  }
+  // Dynamic countdown for proximo-feriado rows ([data-target-date])
+  var targets=document.querySelectorAll('[data-target-date]');
+  if(targets.length){
+    var today=new Date();
+    var todayUTC=Date.UTC(today.getFullYear(),today.getMonth(),today.getDate());
+    for(var j=0;j<targets.length;j++){
+      var t=targets[j];
+      var ds=t.getAttribute('data-target-date');
+      var p=(ds||'').split('-');
+      if(p.length!==3)continue;
+      var tgt=Date.UTC(+p[0],+p[1]-1,+p[2]);
+      var diff=Math.round((tgt-todayUTC)/86400000);
+      var tpl=t.getAttribute('data-template')||'{n}';
+      t.textContent=tpl.replace('{n}',String(diff));
+    }
+  }
 })();

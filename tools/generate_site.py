@@ -454,7 +454,7 @@ def build_best_vacation_windows(year: int) -> list[dict]:
 def css_text() -> str:
     return """\
 :root{--bg:#f6f7f2;--paper:#fff;--ink:#18211b;--muted:#687268;--line:#dfe5dc;--brand:#166534;--brand2:#0f766e;--accent:#b45309;--soft:#ecfdf5;--danger:#b91c1c;--radius:8px;--shadow:0 12px 28px rgba(15,23,42,.08)}
-*{box-sizing:border-box}html{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}body{margin:0}a{color:#0f766e}a:hover{color:#0b5d55}.skip-link{position:absolute;left:-999px}.skip-link:focus{left:1rem;top:1rem;background:#fff;padding:.6rem 1rem;border:2px solid var(--brand);z-index:99}.container{width:min(1140px,calc(100% - 32px));margin-inline:auto}.container--narrow{width:min(820px,calc(100% - 32px));margin-inline:auto}.site-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.site-header__inner{display:flex;align-items:center;gap:1rem;justify-content:space-between;min-height:64px}.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--ink);font-weight:850}.brand__mark{width:36px;height:36px}.brand--footer{color:#fff}.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.25rem;flex-wrap:wrap}.main-nav a{display:block;text-decoration:none;color:var(--muted);padding:.55rem .7rem;border-radius:6px;font-weight:700;font-size:.95rem}.main-nav a[aria-current=page],.main-nav a:hover{background:#eef7f0;color:#14532d}.hero{padding:2.8rem 0 1.8rem;background:linear-gradient(180deg,#fff 0,#f6f7f2 100%)}.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:2rem;align-items:start}.eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);font-weight:850}.hero h1{font-size:clamp(2rem,5vw,4.25rem);line-height:1.02;margin:.35rem 0 1rem;letter-spacing:0}.lead{font-size:1.12rem;color:#3b473e;max-width:70ch}.hero-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.3rem}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:7px;padding:.72rem 1rem;font-weight:850;border:1px solid transparent;cursor:pointer;font:inherit}.btn--primary{background:var(--brand);color:#fff}.btn--primary:hover{background:#14532d;color:#fff}.btn--ghost{border-color:var(--line);background:#fff;color:var(--ink)}.quick-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}.quick-panel h2{margin:0 0 .5rem;font-size:1.1rem;text-transform:capitalize}.mini-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.mini-calendar span{display:flex;align-items:center;justify-content:center;min-height:34px;border-radius:5px;background:#f4f6f2;font-size:.85rem}.mini-calendar .head{background:#e6ece6;color:#475047;font-weight:850}.mini-calendar .holiday{background:#fee2e2;color:#991b1b;font-weight:850}.mini-calendar .special{background:#fef3c7;color:#92400e}.mini-calendar .today{outline:2px solid var(--brand);background:#ecfdf5}.section{padding:2rem 0}.section-title{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1rem}.section-title h2{margin:0;font-size:1.55rem}.section-title p{margin:.2rem 0 0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1rem}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:0 8px 18px rgba(15,23,42,.04)}a.card{text-decoration:none;color:inherit}a.card:hover{border-color:#86efac;box-shadow:var(--shadow)}.card h3{margin:.1rem 0 .4rem}.stat{font-size:2rem;font-weight:900;color:#166534;margin:.2rem 0}.muted{color:var(--muted)}.muted-on-dark{color:#b8c6bd}.prose{font-size:1.03rem}.prose h2{margin-top:1.8rem}.prose p,.prose li{color:#33403a}.prose li{margin:.35rem 0}.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius)}table{border-collapse:collapse;width:100%;min-width:700px}th,td{padding:.72rem .8rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eef2ee;color:#475047;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}.month-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1rem}.month{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:.8rem}.month--large{max-width:760px;margin:auto}.month h3{margin:0 0 .65rem;text-transform:capitalize}.month h3 a{color:inherit;text-decoration:none}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}.calendar-grid span{min-height:32px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:#f8faf7;font-size:.86rem}.month--large .calendar-grid span{min-height:54px}.calendar-grid .head{font-weight:850;background:#e7ece7;color:#4b554d}.calendar-grid .empty{background:transparent}.calendar-grid .weekend{background:#f1f5f9;color:#64748b}.calendar-grid .holiday{background:#fee2e2;color:#991b1b;font-weight:850}.calendar-grid .special{background:#fef3c7;color:#92400e}.calendar-grid .today{outline:2px solid var(--brand)}.tool{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)}.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin-bottom:1rem}.field label{display:block;font-weight:800;margin-bottom:.25rem}.field input,.field select{width:100%;padding:.68rem .75rem;border:1px solid #cbd5cf;border-radius:6px;font:inherit}.result-box{margin-top:1rem;background:#ecfdf5;border:1px solid #bbf7d0;border-radius:7px;padding:1rem}.notice{background:#fffbeb;border:1px solid #fde68a;border-radius:7px;padding:1rem;color:#713f12}.donate-card{text-align:center}.donate-qr{display:block;max-width:190px;height:auto;margin:1rem auto 0;border:1px solid var(--line);border-radius:8px}.footer{margin-top:2rem;padding:2rem 0;background:#10201c;color:#e7f5ef}.footer a{color:#a7f3d0}.footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:1rem}.footer ul{list-style:none;padding:0;margin:.4rem 0}.footer li{margin:.25rem 0}.tag-cloud{display:flex;flex-wrap:wrap;gap:.45rem}.tag-link{display:inline-flex;text-decoration:none;padding:.35rem .62rem;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:800;color:#14532d}.tag{display:inline-flex;padding:.18rem .45rem;border-radius:999px;background:#eef7f4;color:#0f5f59;font-size:.78rem;font-weight:850}@media(max-width:780px){.hero-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.section-title{display:block}table{min-width:620px}.main-nav a{font-size:.86rem;padding:.45rem}.month--large .calendar-grid span{min-height:42px}}
+*{box-sizing:border-box}html{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}body{margin:0}a{color:#0f766e}a:hover{color:#0b5d55}.skip-link{position:absolute;left:-999px}.skip-link:focus{left:1rem;top:1rem;background:#fff;padding:.6rem 1rem;border:2px solid var(--brand);z-index:99}.container{width:min(1140px,calc(100% - 32px));margin-inline:auto}.container--narrow{width:min(820px,calc(100% - 32px));margin-inline:auto}.site-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.site-header__inner{display:flex;align-items:center;gap:1rem;justify-content:space-between;min-height:64px}.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--ink);font-weight:850}.brand__mark{width:36px;height:36px}.brand--footer{color:#fff}.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.25rem;flex-wrap:wrap}.main-nav a{display:block;text-decoration:none;color:var(--muted);padding:.55rem .7rem;border-radius:6px;font-weight:700;font-size:.95rem}.main-nav a[aria-current=page],.main-nav a:hover{background:#eef7f0;color:#14532d}.hero{padding:2.8rem 0 1.8rem;background:linear-gradient(180deg,#fff 0,#f6f7f2 100%)}.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:2rem;align-items:start}.eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);font-weight:850}.hero h1{font-size:clamp(2rem,5vw,4.25rem);line-height:1.02;margin:.35rem 0 1rem;letter-spacing:0}.lead{font-size:1.12rem;color:#3b473e;max-width:70ch}.hero-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.3rem}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:7px;padding:.72rem 1rem;font-weight:850;border:1px solid transparent;cursor:pointer;font:inherit}.btn--primary{background:var(--brand);color:#fff}.btn--primary:hover{background:#14532d;color:#fff}.btn--ghost{border-color:var(--line);background:#fff;color:var(--ink)}.quick-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}.quick-panel h2{margin:0 0 .5rem;font-size:1.1rem;text-transform:capitalize}.mini-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.mini-calendar span{display:flex;align-items:center;justify-content:center;min-height:34px;border-radius:5px;background:#f4f6f2;font-size:.85rem}.mini-calendar .head{background:#e6ece6;color:#475047;font-weight:850}.mini-calendar .holiday{background:#fee2e2;color:#991b1b;font-weight:850}.mini-calendar .special{background:#fef3c7;color:#92400e}.mini-calendar .today{outline:2px solid var(--brand);background:#ecfdf5}.section{padding:2rem 0}.section-title{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1rem}.section-title h2{margin:0;font-size:1.55rem}.section-title p{margin:.2rem 0 0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1rem}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:0 8px 18px rgba(15,23,42,.04)}a.card{text-decoration:none;color:inherit}a.card:hover{border-color:#86efac;box-shadow:var(--shadow)}.card h3{margin:.1rem 0 .4rem}.stat{font-size:2rem;font-weight:900;color:#166534;margin:.2rem 0}.muted{color:var(--muted)}.muted-on-dark{color:#b8c6bd}.prose{font-size:1.03rem}.prose h2{margin-top:1.8rem}.prose p,.prose li{color:#33403a}.prose li{margin:.35rem 0}.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius)}table{border-collapse:collapse;width:100%;min-width:700px}th,td{padding:.72rem .8rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eef2ee;color:#475047;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}.month-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1rem}.month{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:.8rem}.month--large{max-width:760px;margin:auto}.month h3{margin:0 0 .65rem;text-transform:capitalize}.month h3 a{color:inherit;text-decoration:none}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}.calendar-grid span{min-height:32px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:#f8faf7;font-size:.86rem}.month--large .calendar-grid span{min-height:54px}.calendar-grid .head{font-weight:850;background:#e7ece7;color:#4b554d}.calendar-grid .empty{background:transparent}.calendar-grid .weekend{background:#f1f5f9;color:#64748b}.calendar-grid .holiday{background:#fee2e2;color:#991b1b;font-weight:850}.calendar-grid .special{background:#fef3c7;color:#92400e}.calendar-grid .today{outline:2px solid var(--brand)}.tool{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)}.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin-bottom:1rem}.field label{display:block;font-weight:800;margin-bottom:.25rem}.field input,.field select{width:100%;padding:.68rem .75rem;border:1px solid #cbd5cf;border-radius:6px;font:inherit}.result-box{margin-top:1rem;background:#ecfdf5;border:1px solid #bbf7d0;border-radius:7px;padding:1rem}.notice{background:#fffbeb;border:1px solid #fde68a;border-radius:7px;padding:1rem;color:#713f12}.donate-card{text-align:center}.donate-qr{display:block;max-width:190px;height:auto;margin:1rem auto 0;border:1px solid var(--line);border-radius:8px}.footer{margin-top:2rem;padding:2rem 0;background:#10201c;color:#e7f5ef}.footer a{color:#a7f3d0}.footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:1rem}.footer ul{list-style:none;padding:0;margin:.4rem 0}.footer li{margin:.25rem 0}.tag-cloud{display:flex;flex-wrap:wrap;gap:.45rem}.tag-link{display:inline-flex;text-decoration:none;padding:.35rem .62rem;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:800;color:#14532d}.tag{display:inline-flex;padding:.18rem .45rem;border-radius:999px;background:#eef7f4;color:#0f5f59;font-size:.78rem;font-weight:850}.nav-toggle{display:none;background:transparent;border:1px solid var(--line);border-radius:6px;padding:.45rem .6rem;cursor:pointer;color:var(--ink);font:inherit}.nav-toggle__bars{display:inline-flex;flex-direction:column;gap:4px;width:20px;vertical-align:middle}.nav-toggle__bars span{display:block;height:2px;background:currentColor;border-radius:2px}@media(max-width:780px){.hero-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.section-title{display:block}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{min-width:560px}.main-nav a{font-size:.86rem;padding:.45rem}.month--large .calendar-grid span{min-height:42px}.nav-toggle{display:inline-flex;align-items:center;gap:.4rem;font-weight:800}.main-nav{display:none;flex-basis:100%;order:3}.main-nav.is-open{display:block}.main-nav ul{flex-direction:column;gap:.15rem;padding:.4rem 0}.main-nav a{display:block;width:100%;font-size:1rem;padding:.6rem .7rem}.site-header__inner{flex-wrap:wrap}.hero{padding:1.6rem 0 1.2rem}.hero h1{font-size:clamp(1.7rem,7vw,2.4rem)}.hero+.ad-slot--header{display:none}.hero+.ad-slot--header+.section{padding-top:1rem}}
 .calendar-legend{display:flex;flex-wrap:wrap;gap:.55rem .85rem;align-items:center;margin:0 0 1rem;padding:.75rem .85rem;background:#fff;border:1px solid var(--line);border-radius:var(--radius)}.month--large .calendar-legend{margin-top:.35rem}.calendar-legend__item{display:inline-flex;align-items:center;gap:.4rem;color:#475047;font-size:.9rem;font-weight:700}.calendar-legend__swatch{width:18px;height:18px;border-radius:5px;border:1px solid var(--line);display:inline-block}.calendar-legend__swatch--holiday{background:#fee2e2;border-color:#fecaca}.calendar-legend__swatch--special{background:#fef3c7;border-color:#fde68a}.calendar-legend__swatch--weekend{background:#f1f5f9;border-color:#e2e8f0}.calendar-legend__swatch--today{background:#ecfdf5;border-color:var(--brand);outline:2px solid var(--brand);outline-offset:0}
 .quick-panel .calendar-legend{margin:.75rem 0 0;padding:.55rem .6rem;gap:.4rem .65rem}.quick-panel .calendar-legend__item{font-size:.78rem}.quick-panel .calendar-legend__swatch{width:14px;height:14px;border-radius:4px}.mini-calendar .weekend{background:#f1f5f9;color:#64748b}.mini-calendar .holiday{background:#fee2e2;color:#991b1b;font-weight:850}.mini-calendar .special{background:#fef3c7;color:#92400e}.mini-calendar .today{outline:2px solid var(--brand);background:#ecfdf5}
 .breadcrumbs{background:#fff;border-bottom:1px solid var(--line);padding:.7rem 0;font-size:.9rem;color:var(--muted);margin:0}.breadcrumbs a{color:#0f5f59;text-decoration:none;font-weight:700}.breadcrumbs a:hover{text-decoration:underline}.breadcrumbs [aria-current=page]{color:var(--ink);font-weight:800}
@@ -478,6 +478,32 @@ def today_js_text() -> str:
     var el=nodes[i];
     if(el.getAttribute('data-date')===iso){
       el.classList.add('today');
+    }
+  }
+  // Hamburger menu toggle (mobile)
+  var btn=document.querySelector('.nav-toggle');
+  var nav=document.getElementById('main-nav');
+  if(btn && nav){
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      btn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+    });
+  }
+  // Dynamic countdown for proximo-feriado rows ([data-target-date])
+  var targets=document.querySelectorAll('[data-target-date]');
+  if(targets.length){
+    var today=new Date();
+    var todayUTC=Date.UTC(today.getFullYear(),today.getMonth(),today.getDate());
+    for(var j=0;j<targets.length;j++){
+      var t=targets[j];
+      var ds=t.getAttribute('data-target-date');
+      var p=(ds||'').split('-');
+      if(p.length!==3)continue;
+      var tgt=Date.UTC(+p[0],+p[1]-1,+p[2]);
+      var diff=Math.round((tgt-todayUTC)/86400000);
+      var tpl=t.getAttribute('data-template')||'{n}';
+      t.textContent=tpl.replace('{n}',String(diff));
     }
   }
 })();
@@ -952,7 +978,8 @@ def layout(
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="site-header"><div class="container site-header__inner">
 <a class="brand" href="index.html">{brand_svg_inline()}<span>{SITE_NAME_DISPLAY}</span></a>
-<nav class="main-nav" aria-label="Menu principal"><ul>{nav_html}</ul></nav>
+<button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menu"><span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span><span>Menu</span></button>
+<nav class="main-nav" id="main-nav" aria-label="Menu principal"><ul>{nav_html}</ul></nav>
 </div></header>
 <main id="conteudo">{body}</main>
 <footer class="footer"><div class="container footer-grid">
@@ -1037,9 +1064,12 @@ def hero(
     eyebrow: str | None = None,
     panel: tuple[int, int] | None = None,
     actions: str | None = None,
+    extra: str = "",
 ) -> str:
-    # Quick-panel SEMPRE mostra o mes corrente, independente do panel passado
-    panel = (date.today().year, date.today().month)
+    # Quick-panel mostra o mes da pagina quando recebido (ex.: calendario-MES-ANO);
+    # caso contrario, cai no mes corrente.
+    if panel is None:
+        panel = (date.today().year, date.today().month)
     side = mini_month(panel[0], panel[1])
     eyebrow = eyebrow or f"Calendário Brasileiro · atualizado para {ACTIVE_YEAR}"
     actions = actions or f'<a class="btn btn--primary" href="calcular-dias-uteis.html">Calcular dias úteis</a><a class="btn btn--ghost" href="feriados-{ACTIVE_YEAR}.html">Ver feriados {ACTIVE_YEAR}</a>'
@@ -1049,6 +1079,7 @@ def hero(
         f'<h1>{html.escape(title)}</h1>'
         f'<p class="lead">{html.escape(lead)}</p>'
         f'<div class="hero-actions">{actions}</div>'
+        f'{extra}'
         f'</div><aside class="quick-panel">{side}</aside></div></section>'
     )
 
@@ -1164,9 +1195,15 @@ def make_ics(year: int, items: list[Holiday], scope_label: str) -> str:
 
 def year_overview(year: int) -> str:
     stats = year_stats(year)
+    # "Dias úteis (nacional civil)" usa apenas os feriados oficiais da Lei nº 10.607
+    # (exclui Sexta-feira Santa e Corpus Christi, que sao religiosos/bancarios).
+    national_dates = legal_national_dates(year)
+    days = list(daterange(date(year, 1, 1), date(year, 12, 31)))
+    workdays_national_only = sum(1 for d in days if d.weekday() < 5 and d not in national_dates)
+    nationals_count = sum(1 for h in national_holidays(year) if h.official)
     cards = [
-        ("Dias úteis", stats["workdays"], "segunda a sexta menos feriados nacionais"),
-        ("Feriados", stats["holidays"], "feriados e folgas consideradas"),
+        ("Dias úteis", workdays_national_only, "segunda a sexta menos feriados nacionais civis"),
+        ("Feriados nacionais", nationals_count, "feriados civis previstos em lei federal"),
         ("Semanas ISO", stats["iso_weeks"], "semanas no ano calendário"),
         ("Fins de semana", stats["weekend_days"], "sábados e domingos"),
     ]
@@ -1624,15 +1661,22 @@ def render_state_pages(year: int) -> None:
 def render_tools() -> None:
     today_iso = date.today().isoformat()
 
+    diff_tool = (
+        f'<div class="tool tool--hero" data-tool="diff">'
+        f'<div class="tool-grid"><div class="field"><label for="diff-start">Data inicial</label><input id="diff-start" type="date" value="{today_iso}"></div>'
+        f'<div class="field"><label for="diff-end">Data final</label><input id="diff-end" type="date"></div>'
+        f'<div class="field"><label for="diff-mode">Calendário</label><select id="diff-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option><option value="corridos">Dias corridos</option></select></div>'
+        f'<div class="field"><label for="diff-inclusive">Incluir data inicial?</label><select id="diff-inclusive"><option value="no">Não</option><option value="yes">Sim</option></select></div></div>'
+        f'<button class="btn btn--primary" id="diff-run" type="button">Calcular</button>'
+        f'<div class="result-box" id="diff-result" hidden></div></div>'
+    )
     body = hero(
         "Calculadora de dias úteis",
         "Calcule dias úteis entre duas datas usando calendário nacional ou bancário.",
         actions='<a class="btn btn--ghost" href="adicionar-dias-uteis.html">Adicionar dias úteis</a>',
+        extra=diff_tool,
     )
     body += ad_slot("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="diff">
-<div class="tool-grid"><div class="field"><label for="diff-start">Data inicial</label><input id="diff-start" type="date" value="{today_iso}"></div><div class="field"><label for="diff-end">Data final</label><input id="diff-end" type="date"></div><div class="field"><label for="diff-mode">Calendário</label><select id="diff-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option><option value="corridos">Dias corridos</option></select></div><div class="field"><label for="diff-inclusive">Incluir data inicial?</label><select id="diff-inclusive"><option value="no">Não</option><option value="yes">Sim</option></select></div></div>
-<button class="btn btn--primary" id="diff-run" type="button">Calcular</button><div class="result-box" id="diff-result" hidden></div></div></div></section>"""
     body += ad_slot("mid")
     write_page(
         "calcular-dias-uteis.html",
@@ -1643,15 +1687,21 @@ def render_tools() -> None:
         breadcrumbs=[("Início", "index.html"), ("Calcular dias úteis", "")],
     )
 
+    add_tool = (
+        f'<div class="tool tool--hero" data-tool="add">'
+        f'<div class="tool-grid"><div class="field"><label for="add-start">Data inicial</label><input id="add-start" type="date" value="{today_iso}"></div>'
+        f'<div class="field"><label for="add-days">Quantidade de dias úteis</label><input id="add-days" type="number" min="0" value="5"></div>'
+        f'<div class="field"><label for="add-mode">Calendário</label><select id="add-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option></select></div></div>'
+        f'<button class="btn btn--primary" id="add-run" type="button">Adicionar</button>'
+        f'<div class="result-box" id="add-result" hidden></div></div>'
+    )
     body = hero(
         "Adicionar dias úteis a uma data",
         "Some dias úteis a uma data inicial e encontre a data final, com calendário nacional ou bancário.",
         actions='<a class="btn btn--ghost" href="calcular-dias-uteis.html">Calcular intervalo</a>',
+        extra=add_tool,
     )
     body += ad_slot("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="add">
-<div class="tool-grid"><div class="field"><label for="add-start">Data inicial</label><input id="add-start" type="date" value="{today_iso}"></div><div class="field"><label for="add-days">Quantidade de dias úteis</label><input id="add-days" type="number" min="0" value="5"></div><div class="field"><label for="add-mode">Calendário</label><select id="add-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option></select></div></div>
-<button class="btn btn--primary" id="add-run" type="button">Adicionar</button><div class="result-box" id="add-result" hidden></div></div></div></section>"""
     body += ad_slot("mid")
     write_page(
         "adicionar-dias-uteis.html",
@@ -1662,13 +1712,19 @@ def render_tools() -> None:
         breadcrumbs=[("Início", "index.html"), ("Adicionar dias úteis", "")],
     )
 
+    week_tool = (
+        f'<div class="tool tool--hero" data-tool="week">'
+        f'<div class="tool-grid"><div class="field"><label for="week-date">Data</label><input id="week-date" type="date" value="{today_iso}"></div></div>'
+        f'<button class="btn btn--primary" id="week-run" type="button">Ver semana</button>'
+        f'<div class="result-box" id="week-result" hidden></div></div>'
+    )
     body = hero(
         "Número da semana",
         "Descubra o número da semana ISO de qualquer data e o dia da semana correspondente.",
         actions=f'<a class="btn btn--ghost" href="calendario-{ACTIVE_YEAR}.html">Ver calendário</a>',
+        extra=week_tool,
     )
     body += ad_slot("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="week"><div class="tool-grid"><div class="field"><label for="week-date">Data</label><input id="week-date" type="date" value="{today_iso}"></div></div><button class="btn btn--primary" id="week-run" type="button">Ver semana</button><div class="result-box" id="week-result" hidden></div></div></div></section>"""
     body += ad_slot("mid")
     write_page(
         "numero-da-semana.html",
@@ -1685,8 +1741,34 @@ def render_tools() -> None:
         actions=f'<a class="btn btn--primary" href="feriados-bancarios-{ACTIVE_YEAR}.html">Feriados bancários {ACTIVE_YEAR}</a>',
     )
     body += ad_slot("header")
-    body += f'<section class="section"><div class="container"><h2>Anos disponíveis</h2>{links_year_nav("feriados-bancarios", "Bancário", START_YEAR_DEFAULT, END_YEAR_DEFAULT)}</div></section>'
+    bank_items = banking_holidays(ACTIVE_YEAR)
+    bank_rows = []
+    for h in bank_items:
+        bank_rows.append(
+            "<tr>"
+            f"<td>{fmt_short(h.date)}</td>"
+            f"<td>{WEEKDAYS_LONG[h.date.weekday()]}</td>"
+            f"<td><strong>{html.escape(h.name)}</strong></td>"
+            f"<td>{html.escape(h.kind)}</td>"
+            "</tr>"
+        )
+    bank_table = (
+        '<div class="table-wrap"><table><thead><tr>'
+        '<th>Data</th><th>Dia</th><th>Feriado/expediente</th><th>Categoria</th>'
+        '</tr></thead><tbody>' + "".join(bank_rows) + '</tbody></table></div>'
+    )
+    body += (
+        f'<section class="section"><div class="container">'
+        f'<h2>Feriados bancários nacionais em {ACTIVE_YEAR}</h2>'
+        '<p class="muted">Lista dos dias sem expediente bancário ao público no Brasil, '
+        'conforme calendário FEBRABAN. Inclui carnaval, Sexta-feira Santa, Corpus Christi e o último dia útil do ano.</p>'
+        f'{bank_table}'
+        '<p class="notice">Em datas de expediente especial (ex.: Quarta-feira de Cinzas) bancos podem abrir após as 12h. '
+        'Confirme com sua instituição para operações que dependem de liquidação no dia.</p>'
+        '</div></section>'
+    )
     body += ad_slot("mid")
+    body += f'<section class="section"><div class="container"><h2>Anos disponíveis</h2>{links_year_nav("feriados-bancarios", "Bancário", START_YEAR_DEFAULT, END_YEAR_DEFAULT)}</div></section>'
     write_page(
         "calendario-bancario.html",
         "Calendário bancário do Brasil",

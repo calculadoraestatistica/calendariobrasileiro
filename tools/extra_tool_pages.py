@@ -67,7 +67,8 @@ def _related_grid(exclude_slug: str) -> str:
 
 def _hero(layout_fn, title: str, lead: str, primary_href: str, primary_label: str,
           ghost_href: str = "calcular-dias-uteis.html",
-          ghost_label: str = "Calcular dias úteis") -> str:
+          ghost_label: str = "Calcular dias úteis",
+          extra: str = "") -> str:
     """Build hero using the helpers exposed by the generator module."""
     import generate_site as gs  # local import to avoid cycle at import time
     actions = (
@@ -76,7 +77,7 @@ def _hero(layout_fn, title: str, lead: str, primary_href: str, primary_label: st
         f'<a class="btn btn--ghost" href="{html.escape(ghost_href)}">'
         f'{html.escape(ghost_label)}</a>'
     )
-    return gs.hero(title, lead, actions=actions)
+    return gs.hero(title, lead, actions=actions, extra=extra)
 
 
 def _ad(position: str) -> str:
@@ -101,6 +102,16 @@ def render_calculadora_idade(out_dir: Path, layout_fn, **deps) -> None:
         "dias vividos, semanas, horas e quantos dias faltam para o próximo aniversário."
     )
 
+    tool_html = (
+        f'<div class="tool tool--hero" data-tool="idade">'
+        f'<div class="tool-grid">'
+        f'<div class="field"><label for="idade-nasc">Data de nascimento</label><input id="idade-nasc" type="date" required></div>'
+        f'<div class="field"><label for="idade-ref">Data de referência</label><input id="idade-ref" type="date" value="{today_iso}"></div>'
+        f'</div>'
+        f'<button class="btn btn--primary" id="idade-run" type="button">Calcular idade</button>'
+        f'<div class="result-box" id="idade-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        f'</div>'
+    )
     body = _hero(
         layout_fn,
         "Calculadora de Idade",
@@ -108,55 +119,49 @@ def render_calculadora_idade(out_dir: Path, layout_fn, **deps) -> None:
         "semanas, horas e quantos dias faltam para o próximo aniversário.",
         primary_href="diferenca-entre-datas.html",
         primary_label="Diferença entre datas",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="idade">
-<div class="tool-grid">
-<div class="field"><label for="idade-nasc">Data de nascimento</label><input id="idade-nasc" type="date" required></div>
-<div class="field"><label for="idade-ref">Data de referência</label><input id="idade-ref" type="date" value="{today_iso}"></div>
-</div>
-<button class="btn btn--primary" id="idade-run" type="button">Calcular idade</button>
-<div class="result-box" id="idade-result" hidden aria-live="polite" aria-atomic="true"></div>
-</div></div></section>
-<script>
-(function(){{
+    body += """<script>
+(function(){
   var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-  function parseUTC(s){{var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}}
-  function daysInMonth(y,m){{return new Date(Date.UTC(y,m+1,0)).getUTCDate();}}
-  function fmt(d){{return d.toLocaleDateString('pt-BR',{{timeZone:'UTC'}});}}
-  function calc(){{
+  function parseUTC(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}
+  function daysInMonth(y,m){return new Date(Date.UTC(y,m+1,0)).getUTCDate();}
+  function fmt(d){return d.toLocaleDateString('pt-BR',{timeZone:'UTC'});}
+  function calc(){
     var birth=parseUTC(document.getElementById('idade-nasc').value);
     var ref=parseUTC(document.getElementById('idade-ref').value);
     var box=document.getElementById('idade-result');
     box.hidden=false;
-    if(!birth){{box.textContent='Informe a data de nascimento.';return;}}
-    if(!ref){{ref=new Date(Date.UTC(new Date().getUTCFullYear(),new Date().getUTCMonth(),new Date().getUTCDate()));}}
-    if(ref<birth){{box.textContent='A data de referência precisa ser igual ou posterior ao nascimento.';return;}}
+    if(!birth){box.textContent='Informe a data de nascimento.';return;}
+    if(!ref){ref=new Date(Date.UTC(new Date().getUTCFullYear(),new Date().getUTCMonth(),new Date().getUTCDate()));}
+    if(ref<birth){box.textContent='A data de referência precisa ser igual ou posterior ao nascimento.';return;}
     var by=birth.getUTCFullYear(),bm=birth.getUTCMonth(),bd=birth.getUTCDate();
     var ry=ref.getUTCFullYear(),rm=ref.getUTCMonth(),rd=ref.getUTCDate();
     var years=ry-by,months=rm-bm,days=rd-bd;
-    if(days<0){{months-=1;days+=daysInMonth(by,bm);}}
-    if(months<0){{years-=1;months+=12;}}
+    if(days<0){months-=1;days+=daysInMonth(by,bm);}
+    if(months<0){years-=1;months+=12;}
     var totalDays=Math.floor((ref-birth)/86400000);
     var weeks=Math.floor(totalDays/7);
     var hours=totalDays*24;
     var nextY=ry;
     var next=new Date(Date.UTC(nextY,bm,bd));
-    if(next<=ref){{next=new Date(Date.UTC(nextY+1,bm,bd));}}
+    if(next<=ref){next=new Date(Date.UTC(nextY+1,bm,bd));}
     var daysToNext=Math.ceil((next-ref)/86400000);
     var weekday=WEEKDAYS_LONG[birth.getUTCDay()];
+    var art=(birth.getUTCDay()===0||birth.getUTCDay()===6)?'um':'uma';
     box.innerHTML=
       '<p><strong>'+years+'</strong> ano(s), <strong>'+months+'</strong> mês(es) e <strong>'+days+'</strong> dia(s).</p>'+
       '<p>Total: <strong>'+totalDays.toLocaleString('pt-BR')+'</strong> dias · '+
       '<strong>'+weeks.toLocaleString('pt-BR')+'</strong> semanas · '+
       '<strong>'+hours.toLocaleString('pt-BR')+'</strong> horas.</p>'+
       '<p>Próximo aniversário: <strong>'+fmt(next)+'</strong> (faltam '+daysToNext+' dia(s)).</p>'+
-      '<p>Você nasceu em uma <strong>'+weekday+'</strong>.</p>';
-  }}
-  document.addEventListener('DOMContentLoaded',function(){{
+      '<p>Você nasceu em '+art+' <strong>'+weekday+'</strong>.</p>';
+  }
+  document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('idade-run').addEventListener('click',calc);
-  }});
-}})();
+  });
+})();
 </script>"""
     body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
@@ -198,6 +203,17 @@ def render_diferenca_entre_datas(out_dir: Path, layout_fn, **deps) -> None:
         "horas e minutos. Útil para gestação, contratos e projetos."
     )
 
+    tool_html = (
+        f'<div class="tool tool--hero" data-tool="diff2">'
+        f'<div class="tool-grid">'
+        f'<div class="field"><label for="d2-a">Data 1</label><input id="d2-a" type="date" value="{today_iso}"></div>'
+        f'<div class="field"><label for="d2-b">Data 2</label><input id="d2-b" type="date"></div>'
+        f'<div class="field"><label for="d2-inc">Incluir a data final?</label><select id="d2-inc"><option value="no">Não</option><option value="yes">Sim</option></select></div>'
+        f'</div>'
+        f'<button class="btn btn--primary" id="d2-run" type="button">Calcular diferença</button>'
+        f'<div class="result-box" id="d2-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        f'</div>'
+    )
     body = _hero(
         layout_fn,
         "Diferença entre Datas",
@@ -207,41 +223,33 @@ def render_diferenca_entre_datas(out_dir: Path, layout_fn, **deps) -> None:
         primary_label="Calcular dias úteis",
         ghost_href="calculadora-idade.html",
         ghost_label="Calculadora de idade",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="diff2">
-<div class="tool-grid">
-<div class="field"><label for="d2-a">Data 1</label><input id="d2-a" type="date" value="{today_iso}"></div>
-<div class="field"><label for="d2-b">Data 2</label><input id="d2-b" type="date"></div>
-<div class="field"><label for="d2-inc">Incluir a data final?</label><select id="d2-inc"><option value="no">Não</option><option value="yes">Sim</option></select></div>
-</div>
-<button class="btn btn--primary" id="d2-run" type="button">Calcular diferença</button>
-<div class="result-box" id="d2-result" hidden aria-live="polite" aria-atomic="true"></div>
-</div></div></section>
-<script>
-(function(){{
-  function parseUTC(s){{var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}}
-  function daysInMonth(y,m){{return new Date(Date.UTC(y,m+1,0)).getUTCDate();}}
-  function relDelta(a,b){{
+    body += """<script>
+(function(){
+  function parseUTC(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}
+  function daysInMonth(y,m){return new Date(Date.UTC(y,m+1,0)).getUTCDate();}
+  function relDelta(a,b){
     var sign=a<=b?1:-1;
     var s=sign>0?a:b,e=sign>0?b:a;
     var y=e.getUTCFullYear()-s.getUTCFullYear();
     var m=e.getUTCMonth()-s.getUTCMonth();
     var d=e.getUTCDate()-s.getUTCDate();
-    if(d<0){{m-=1;d+=daysInMonth(s.getUTCFullYear(),s.getUTCMonth());}}
-    if(m<0){{y-=1;m+=12;}}
-    return {{years:y*sign,months:m*sign,days:d*sign}};
-  }}
-  function calc(){{
+    if(d<0){m-=1;d+=daysInMonth(s.getUTCFullYear(),s.getUTCMonth());}
+    if(m<0){y-=1;m+=12;}
+    return {years:y*sign,months:m*sign,days:d*sign};
+  }
+  function calc(){
     var a=parseUTC(document.getElementById('d2-a').value);
     var b=parseUTC(document.getElementById('d2-b').value);
     var inc=document.getElementById('d2-inc').value==='yes';
     var box=document.getElementById('d2-result');
     box.hidden=false;
-    if(!a||!b){{box.textContent='Informe as duas datas.';return;}}
+    if(!a||!b){box.textContent='Informe as duas datas.';return;}
     var rd=relDelta(a,b);
     var ms=b-a;
-    if(inc){{ms+=86400000*(b>=a?1:-1);}}
+    if(inc){ms+=86400000*(b>=a?1:-1);}
     var totalDays=Math.round(ms/86400000);
     var absDays=Math.abs(totalDays);
     var sign=totalDays<0?'-':'';
@@ -254,11 +262,11 @@ def render_diferenca_entre_datas(out_dir: Path, layout_fn, **deps) -> None:
       '<p>Diferença em calendário: <strong>'+rd.years+'</strong> ano(s), <strong>'+rd.months+'</strong> mês(es), <strong>'+rd.days+'</strong> dia(s).</p>'+
       '<p>Total: <strong>'+sign+absDays.toLocaleString('pt-BR')+'</strong> dias corridos ('+sign+weeks.toLocaleString('pt-BR')+' semanas e '+remDays+' dias).</p>'+
       '<p>Equivale a <strong>'+sign+hours.toLocaleString('pt-BR')+'</strong> horas, <strong>'+sign+minutes.toLocaleString('pt-BR')+'</strong> minutos e <strong>'+sign+seconds.toLocaleString('pt-BR')+'</strong> segundos.</p>';
-  }}
-  document.addEventListener('DOMContentLoaded',function(){{
+  }
+  document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('d2-run').addEventListener('click',calc);
-  }});
-}})();
+  });
+})();
 </script>"""
     body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
@@ -299,6 +307,17 @@ def render_countdown(out_dir: Path, layout_fn, **deps) -> None:
         "segundos. Inclui permalink compartilhável e dia da semana."
     )
 
+    tool_html = (
+        '<div class="tool tool--hero" data-tool="countdown">'
+        '<div class="tool-grid">'
+        '<div class="field"><label for="cd-date">Data alvo</label><input id="cd-date" type="date"></div>'
+        '<div class="field"><label for="cd-name">Nome do evento (opcional)</label><input id="cd-name" type="text" placeholder="ex.: Aniversário"></div>'
+        '</div>'
+        '<button class="btn btn--primary" id="cd-run" type="button">Iniciar contagem</button>'
+        '<div class="result-box" id="cd-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        '<p class="muted" id="cd-link" hidden></p>'
+        '</div>'
+    )
     body = _hero(
         layout_fn,
         "Contagem Regressiva",
@@ -308,18 +327,10 @@ def render_countdown(out_dir: Path, layout_fn, **deps) -> None:
         primary_label="Próximo feriado",
         ghost_href="diferenca-entre-datas.html",
         ghost_label="Diferença entre datas",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += """<section class="section"><div class="container"><div class="tool" data-tool="countdown">
-<div class="tool-grid">
-<div class="field"><label for="cd-date">Data alvo</label><input id="cd-date" type="date"></div>
-<div class="field"><label for="cd-name">Nome do evento (opcional)</label><input id="cd-name" type="text" placeholder="ex.: Aniversário"></div>
-</div>
-<button class="btn btn--primary" id="cd-run" type="button">Iniciar contagem</button>
-<div class="result-box" id="cd-result" hidden aria-live="polite" aria-atomic="true"></div>
-<p class="muted" id="cd-link" hidden></p>
-</div></div></section>
-<script>
+    body += """<script>
 (function(){
   var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
   function parseLocal(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(p[0],p[1]-1,p[2]);}
@@ -342,10 +353,11 @@ def render_countdown(out_dir: Path, layout_fn, **deps) -> None:
     var minutes=Math.floor((totalSec%3600)/60);
     var seconds=totalSec%60;
     var weekday=WEEKDAYS_LONG[target.getDay()];
+    var art=(target.getDay()===0||target.getDay()===6)?'um':'uma';
     box.innerHTML=
       '<p style="font-size:1.4rem;margin:0"><strong>'+(name?esc(name)+': ':'')+
       days+'</strong> dia(s), <strong>'+pad(hours)+'</strong> h, <strong>'+pad(minutes)+'</strong> min, <strong>'+pad(seconds)+'</strong> s.</p>'+
-      '<p class="muted">A data alvo cai em uma '+weekday+'.</p>';
+      '<p class="muted">A data alvo cai em '+art+' '+weekday+'.</p>';
   }
   function start(){
     var v=document.getElementById('cd-date').value;
@@ -429,6 +441,7 @@ def render_proximo_feriado(out_dir: Path, layout_fn, **deps) -> None:
     for h in next5:
         delta = (h.date - today).days
         wd = gs.WEEKDAYS_LONG[h.date.weekday()]
+        iso = h.date.isoformat()
         bridge = ""
         if h.date.weekday() == 1:
             bridge = " · oportunidade de emenda na segunda"
@@ -439,7 +452,7 @@ def render_proximo_feriado(out_dir: Path, layout_fn, **deps) -> None:
         rows.append(
             f"<tr><td>{gs.fmt_short(h.date)}</td><td>{wd}</td>"
             f"<td><strong>{html.escape(h.name)}</strong>{bridge}</td>"
-            f"<td>{delta} dia(s)</td></tr>"
+            f'<td><span data-target-date="{iso}" data-template="{{n}} dia(s)">{delta} dia(s)</span></td></tr>'
         )
     table = (
         '<div class="table-wrap"><table><thead><tr>'
@@ -450,12 +463,13 @@ def render_proximo_feriado(out_dir: Path, layout_fn, **deps) -> None:
     if next5:
         nxt = next5[0]
         delta = (nxt.date - today).days
+        iso = nxt.date.isoformat()
         highlight = (
             f'<p style="font-size:1.4rem;margin:0">Próximo feriado: '
             f'<strong>{html.escape(nxt.name)}</strong> em '
             f'<strong>{gs.fmt_date(nxt.date)}</strong> '
             f'({gs.WEEKDAYS_LONG[nxt.date.weekday()]}).</p>'
-            f'<p>Faltam <strong>{delta}</strong> dia(s).</p>'
+            f'<p>Faltam <strong data-target-date="{iso}" data-template="{{n}}">{delta}</strong> dia(s).</p>'
         )
     else:
         highlight = '<p>Não encontramos feriados futuros na base atual.</p>'
@@ -518,6 +532,15 @@ def render_dia_da_semana(out_dir: Path, layout_fn, **deps) -> None:
         "número da semana ISO, dia do ano e a mesma data em outros anos."
     )
 
+    tool_html = (
+        f'<div class="tool tool--hero" data-tool="dia-semana">'
+        f'<div class="tool-grid">'
+        f'<div class="field"><label for="ds-date">Data</label><input id="ds-date" type="date" value="{today_iso}"></div>'
+        f'</div>'
+        f'<button class="btn btn--primary" id="ds-run" type="button">Ver dia da semana</button>'
+        f'<div class="result-box" id="ds-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        f'</div>'
+    )
     body = _hero(
         layout_fn,
         "Dia da Semana de uma Data",
@@ -527,52 +550,47 @@ def render_dia_da_semana(out_dir: Path, layout_fn, **deps) -> None:
         primary_label="Número da semana",
         ghost_href="data-da-semana.html",
         ghost_label="Data da semana ISO",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="dia-semana">
-<div class="tool-grid">
-<div class="field"><label for="ds-date">Data</label><input id="ds-date" type="date" value="{today_iso}"></div>
-</div>
-<button class="btn btn--primary" id="ds-run" type="button">Ver dia da semana</button>
-<div class="result-box" id="ds-result" hidden aria-live="polite" aria-atomic="true"></div>
-</div></div></section>
-<script>
-(function(){{
+    body += """<script>
+(function(){
   var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-  function parseUTC(s){{var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}}
-  function fmt(d){{return d.toLocaleDateString('pt-BR',{{timeZone:'UTC'}});}}
-  function isoWeek(d){{
+  function parseUTC(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}
+  function fmt(d){return d.toLocaleDateString('pt-BR',{timeZone:'UTC'});}
+  function isoWeek(d){
     var tmp=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()));
     var day=tmp.getUTCDay()||7;
     tmp.setUTCDate(tmp.getUTCDate()+4-day);
     var yearStart=new Date(Date.UTC(tmp.getUTCFullYear(),0,1));
     return Math.ceil((((tmp-yearStart)/86400000)+1)/7);
-  }}
-  function dayOfYear(d){{
+  }
+  function dayOfYear(d){
     var start=new Date(Date.UTC(d.getUTCFullYear(),0,1));
     return Math.floor((d-start)/86400000)+1;
-  }}
-  function calc(){{
+  }
+  function calc(){
     var d=parseUTC(document.getElementById('ds-date').value);
     var box=document.getElementById('ds-result');
     box.hidden=false;
-    if(!d){{box.textContent='Informe uma data.';return;}}
+    if(!d){box.textContent='Informe uma data.';return;}
     var wd=WEEKDAYS_LONG[d.getUTCDay()];
+    var art=(d.getUTCDay()===0||d.getUTCDay()===6)?'um':'uma';
     var rows='';
-    for(var off=-1;off<=5;off++){{
+    for(var off=-1;off<=5;off++){
       var dy=new Date(Date.UTC(d.getUTCFullYear()+off,d.getUTCMonth(),d.getUTCDate()));
       var label=off===0?'<strong>'+fmt(dy)+' (referência)</strong>':fmt(dy);
       rows+='<tr><td>'+label+'</td><td>'+WEEKDAYS_LONG[dy.getUTCDay()]+'</td></tr>';
-    }}
+    }
     box.innerHTML=
-      '<p>'+fmt(d)+' cai em uma <strong>'+wd+'</strong>.</p>'+
+      '<p>'+fmt(d)+' cai em '+art+' <strong>'+wd+'</strong>.</p>'+
       '<p>Semana ISO <strong>'+isoWeek(d)+'</strong> · dia <strong>'+dayOfYear(d)+'</strong> do ano.</p>'+
       '<div class="table-wrap"><table><thead><tr><th>Data</th><th>Dia da semana</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
-  }}
-  document.addEventListener('DOMContentLoaded',function(){{
+  }
+  document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('ds-run').addEventListener('click',calc);
-  }});
-}})();
+  });
+})();
 </script>"""
     body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
@@ -614,6 +632,17 @@ def render_data_mais_dias(out_dir: Path, layout_fn, **deps) -> None:
         "vencimentos, gestação e contratos em dias corridos."
     )
 
+    tool_html = (
+        f'<div class="tool tool--hero" data-tool="dmd">'
+        f'<div class="tool-grid">'
+        f'<div class="field"><label for="dmd-start">Data inicial</label><input id="dmd-start" type="date" value="{today_iso}"></div>'
+        f'<div class="field"><label for="dmd-op">Operação</label><select id="dmd-op"><option value="add">Adicionar (+)</option><option value="sub">Subtrair (-)</option></select></div>'
+        f'<div class="field"><label for="dmd-days">Quantidade de dias corridos</label><input id="dmd-days" type="number" min="0" value="30"></div>'
+        f'</div>'
+        f'<button class="btn btn--primary" id="dmd-run" type="button">Calcular</button>'
+        f'<div class="result-box" id="dmd-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        f'</div>'
+    )
     body = _hero(
         layout_fn,
         "Data ± N Dias Corridos",
@@ -623,40 +652,32 @@ def render_data_mais_dias(out_dir: Path, layout_fn, **deps) -> None:
         primary_label="Versão em dias úteis",
         ghost_href="subtrair-dias-uteis.html",
         ghost_label="Subtrair dias úteis",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="dmd">
-<div class="tool-grid">
-<div class="field"><label for="dmd-start">Data inicial</label><input id="dmd-start" type="date" value="{today_iso}"></div>
-<div class="field"><label for="dmd-op">Operação</label><select id="dmd-op"><option value="add">Adicionar (+)</option><option value="sub">Subtrair (-)</option></select></div>
-<div class="field"><label for="dmd-days">Quantidade de dias corridos</label><input id="dmd-days" type="number" min="0" value="30"></div>
-</div>
-<button class="btn btn--primary" id="dmd-run" type="button">Calcular</button>
-<div class="result-box" id="dmd-result" hidden aria-live="polite" aria-atomic="true"></div>
-</div></div></section>
-<script>
-(function(){{
+    body += """<script>
+(function(){
   var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-  function parseUTC(s){{var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}}
-  function fmt(d){{return d.toLocaleDateString('pt-BR',{{timeZone:'UTC'}});}}
-  function calc(){{
+  function parseUTC(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}
+  function fmt(d){return d.toLocaleDateString('pt-BR',{timeZone:'UTC'});}
+  function calc(){
     var start=parseUTC(document.getElementById('dmd-start').value);
     var op=document.getElementById('dmd-op').value;
     var n=Number((document.getElementById('dmd-days').value||'0').toString().replace(',','.'));
     var box=document.getElementById('dmd-result');
     box.hidden=false;
-    if(!start||isNaN(n)||n<0){{box.textContent='Informe data e quantidade válida.';return;}}
+    if(!start||isNaN(n)||n<0){box.textContent='Informe data e quantidade válida.';return;}
     var sign=op==='sub'?-1:1;
     var result=new Date(start.getTime()+sign*n*86400000);
     var wd=WEEKDAYS_LONG[result.getUTCDay()];
     box.innerHTML=
       '<p>Resultado: <strong>'+fmt(result)+'</strong> ('+wd+').</p>'+
       '<p class="muted">'+fmt(start)+' '+(sign>0?'+':'-')+' '+n+' dia(s) corridos.</p>';
-  }}
-  document.addEventListener('DOMContentLoaded',function(){{
+  }
+  document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('dmd-run').addEventListener('click',calc);
-  }});
-}})();
+  });
+})();
 </script>"""
     body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
@@ -698,6 +719,17 @@ def render_subtrair_dias_uteis(out_dir: Path, layout_fn, **deps) -> None:
         "e feriados nacionais brasileiros."
     )
 
+    tool_html = (
+        f'<div class="tool tool--hero" data-tool="sub">'
+        f'<div class="tool-grid">'
+        f'<div class="field"><label for="sub-start">Data final</label><input id="sub-start" type="date" value="{today_iso}"></div>'
+        f'<div class="field"><label for="sub-days">Dias úteis a recuar</label><input id="sub-days" type="number" min="0" value="5"></div>'
+        f'<div class="field"><label for="sub-mode">Calendário</label><select id="sub-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option></select></div>'
+        f'</div>'
+        f'<button class="btn btn--primary" id="sub-run" type="button">Calcular</button>'
+        f'<div class="result-box" id="sub-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        f'</div>'
+    )
     body = _hero(
         layout_fn,
         "Subtrair Dias Úteis",
@@ -707,61 +739,53 @@ def render_subtrair_dias_uteis(out_dir: Path, layout_fn, **deps) -> None:
         primary_label="Adicionar dias úteis",
         ghost_href="calcular-dias-uteis.html",
         ghost_label="Calcular intervalo",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="sub">
-<div class="tool-grid">
-<div class="field"><label for="sub-start">Data final</label><input id="sub-start" type="date" value="{today_iso}"></div>
-<div class="field"><label for="sub-days">Dias úteis a recuar</label><input id="sub-days" type="number" min="0" value="5"></div>
-<div class="field"><label for="sub-mode">Calendário</label><select id="sub-mode"><option value="standard">Dias úteis nacionais</option><option value="bank">Dias úteis bancários</option></select></div>
-</div>
-<button class="btn btn--primary" id="sub-run" type="button">Calcular</button>
-<div class="result-box" id="sub-result" hidden aria-live="polite" aria-atomic="true"></div>
-</div></div></section>
-<script>
-(function(){{
-  var data=window.CB_CALENDAR_DATA||{{}};
+    body += """<script>
+(function(){
+  var data=window.CB_CALENDAR_DATA||{};
   var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-  function parseUTC(s){{var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}}
-  function isoDate(d){{return d.toISOString().slice(0,10);}}
-  function fmt(d){{return d.toLocaleDateString('pt-BR',{{timeZone:'UTC'}});}}
-  function addDays(d,n){{var x=new Date(d);x.setUTCDate(x.getUTCDate()+n);return x;}}
-  function isWeekend(d){{var w=d.getUTCDay();return w===0||w===6;}}
-  function excluded(year,mode){{
+  function parseUTC(s){var p=(s||'').split('-').map(Number);if(p.length!==3)return null;return new Date(Date.UTC(p[0],p[1]-1,p[2]));}
+  function isoDate(d){return d.toISOString().slice(0,10);}
+  function fmt(d){return d.toLocaleDateString('pt-BR',{timeZone:'UTC'});}
+  function addDays(d,n){var x=new Date(d);x.setUTCDate(x.getUTCDate()+n);return x;}
+  function isWeekend(d){var w=d.getUTCDay();return w===0||w===6;}
+  function excluded(year,mode){
     var y=data.years&&data.years[String(year)];
     if(!y)return new Set();
     return new Set(mode==='bank'?y.bankExcluded:y.standardExcluded);
-  }}
-  function isUseful(d,mode){{
+  }
+  function isUseful(d,mode){
     if(isWeekend(d))return false;
     return !excluded(d.getUTCFullYear(),mode).has(isoDate(d));
-  }}
-  function calc(){{
+  }
+  function calc(){
     var start=parseUTC(document.getElementById('sub-start').value);
     var n=Number(document.getElementById('sub-days').value||0);
     var mode=document.getElementById('sub-mode').value;
     var box=document.getElementById('sub-result');
     box.hidden=false;
-    if(!start||n<0){{box.textContent='Informe data e quantidade válida.';return;}}
+    if(!start||n<0){box.textContent='Informe data e quantidade válida.';return;}
     var d=new Date(start);
     var rem=n;
     var steps=0;
-    while(rem>0&&steps<3650){{
+    while(rem>0&&steps<3650){
       d=addDays(d,-1);
       steps++;
       if(isUseful(d,mode))rem--;
-    }}
-    if(rem>0){{box.textContent='Não foi possível recuar a quantidade pedida.';return;}}
+    }
+    if(rem>0){box.textContent='Não foi possível recuar a quantidade pedida.';return;}
     var corridos=Math.round((start-d)/86400000);
     var wd=WEEKDAYS_LONG[d.getUTCDay()];
     box.innerHTML=
       '<p>Data recuada: <strong>'+fmt(d)+'</strong> ('+wd+').</p>'+
       '<p class="muted">Foram '+corridos+' dia(s) corridos para recuar '+n+' dia(s) '+(mode==='bank'?'útil(eis) bancário(s)':'útil(eis)')+'.</p>';
-  }}
-  document.addEventListener('DOMContentLoaded',function(){{
+  }
+  document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('sub-run').addEventListener('click',calc);
-  }});
-}})();
+  });
+})();
 </script>"""
     body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
@@ -803,6 +827,20 @@ def render_data_da_semana(out_dir: Path, layout_fn, **deps) -> None:
     )
     current_year = date.today().year
 
+    tool_html = (
+        f'<div class="tool tool--hero" data-tool="dsemana">'
+        f'<div class="tool-grid">'
+        f'<div class="field"><label for="dsi-year">Ano</label><input id="dsi-year" type="number" min="2020" max="2050" value="{current_year}"></div>'
+        f'<div class="field"><label for="dsi-week">Semana ISO</label><input id="dsi-week" type="number" min="1" max="53" value="1"></div>'
+        f'<div class="field"><label for="dsi-day">Dia da semana</label><select id="dsi-day">'
+        f'<option value="1">Segunda-feira</option><option value="2">Terça-feira</option><option value="3">Quarta-feira</option><option value="4">Quinta-feira</option><option value="5">Sexta-feira</option><option value="6">Sábado</option><option value="7">Domingo</option>'
+        f'</select></div>'
+        f'</div>'
+        f'<button class="btn btn--primary" id="dsi-run" type="button">Calcular data</button>'
+        f'<div class="result-box" id="dsi-result" hidden aria-live="polite" aria-atomic="true"></div>'
+        f'</div>'
+    )
+
     body = _hero(
         layout_fn,
         "Data da Semana ISO",
@@ -812,44 +850,34 @@ def render_data_da_semana(out_dir: Path, layout_fn, **deps) -> None:
         primary_label="Número da semana",
         ghost_href="dia-da-semana.html",
         ghost_label="Dia da semana",
+        extra=tool_html,
     )
     body += _ad("header")
-    body += f"""<section class="section"><div class="container"><div class="tool" data-tool="dsemana">
-<div class="tool-grid">
-<div class="field"><label for="dsi-year">Ano</label><input id="dsi-year" type="number" min="2020" max="2050" value="{current_year}"></div>
-<div class="field"><label for="dsi-week">Semana ISO</label><input id="dsi-week" type="number" min="1" max="53" value="1"></div>
-<div class="field"><label for="dsi-day">Dia da semana</label><select id="dsi-day">
-<option value="1">Segunda-feira</option><option value="2">Terça-feira</option><option value="3">Quarta-feira</option><option value="4">Quinta-feira</option><option value="5">Sexta-feira</option><option value="6">Sábado</option><option value="7">Domingo</option>
-</select></div>
-</div>
-<button class="btn btn--primary" id="dsi-run" type="button">Calcular data</button>
-<div class="result-box" id="dsi-result" hidden aria-live="polite" aria-atomic="true"></div>
-</div></div></section>
-<script>
-(function(){{
+    body += """<script>
+(function(){
   var MONTHS=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
   var WEEKDAYS_LONG=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
-  function fmt(d){{return d.getUTCDate()+' de '+MONTHS[d.getUTCMonth()]+' de '+d.getUTCFullYear();}}
-  function isoWeeksInYear(year){{
+  function fmt(d){return d.getUTCDate()+' de '+MONTHS[d.getUTCMonth()]+' de '+d.getUTCFullYear();}
+  function isoWeeksInYear(year){
     var dec28=new Date(Date.UTC(year,11,28));
     var day=dec28.getUTCDay()||7;
     var tmp=new Date(Date.UTC(dec28.getUTCFullYear(),dec28.getUTCMonth(),dec28.getUTCDate()+4-day));
     var yearStart=new Date(Date.UTC(tmp.getUTCFullYear(),0,1));
     return Math.ceil((((tmp-yearStart)/86400000)+1)/7);
-  }}
-  function dayOfYear(d){{
+  }
+  function dayOfYear(d){
     var start=new Date(Date.UTC(d.getUTCFullYear(),0,1));
     return Math.floor((d-start)/86400000)+1;
-  }}
-  function calc(){{
+  }
+  function calc(){
     var year=parseInt(document.getElementById('dsi-year').value,10);
     var week=parseInt(document.getElementById('dsi-week').value,10);
     var day=parseInt(document.getElementById('dsi-day').value,10);
     var box=document.getElementById('dsi-result');
     box.hidden=false;
-    if(!year||!week||!day){{box.textContent='Preencha todos os campos.';return;}}
+    if(!year||!week||!day){box.textContent='Preencha todos os campos.';return;}
     var maxW=isoWeeksInYear(year);
-    if(week<1||week>maxW){{box.textContent='O ano '+year+' tem '+maxW+' semanas ISO.';return;}}
+    if(week<1||week>maxW){box.textContent='O ano '+year+' tem '+maxW+' semanas ISO.';return;}
     var jan4=new Date(Date.UTC(year,0,4));
     var jan4Day=jan4.getUTCDay()||7;
     var mondayWeek1=new Date(Date.UTC(year,0,4-(jan4Day-1)));
@@ -858,11 +886,11 @@ def render_data_da_semana(out_dir: Path, layout_fn, **deps) -> None:
     box.innerHTML=
       '<p>Data: <strong>'+fmt(target)+'</strong> ('+wd+').</p>'+
       '<p>Mês: <strong>'+MONTHS[target.getUTCMonth()]+'</strong> · dia <strong>'+dayOfYear(target)+'</strong> do ano de '+target.getUTCFullYear()+'.</p>';
-  }}
-  document.addEventListener('DOMContentLoaded',function(){{
+  }
+  document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('dsi-run').addEventListener('click',calc);
-  }});
-}})();
+  });
+})();
 </script>"""
     body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
