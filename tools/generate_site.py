@@ -865,26 +865,20 @@ def render_faq_section(items: list[tuple[str, str]]) -> str:
 
 
 def ad_slot(position: str) -> str:
-    """AdSense slot with placeholder slot id.
+    """No-op ad slot.
 
-    Replace ``HEADER_SLOT_PLACEHOLDER``, ``MID_SLOT_PLACEHOLDER`` and
-    ``FOOTER_SLOT_PLACEHOLDER`` with real ad-unit ids before going live.
+    Previously this emitted manual ``<ins class="adsbygoogle" data-ad-slot=...>``
+    blocks with placeholder slot ids. Those blocks never rendered because the
+    slot ids were fictitious. We now rely exclusively on Google AdSense Auto
+    Ads, which is activated in the AdSense console: the head-level
+    ``<script async ...adsbygoogle.js>`` and ``<meta name="google-adsense-account">``
+    tags are enough for Auto Ads to place inventory automatically.
+
+    ``position`` is preserved as an argument so existing call sites do not need
+    to change; the return value is intentionally empty.
     """
-
-    slot_id = {
-        "header": "HEADER_SLOT_PLACEHOLDER",
-        "mid": "MID_SLOT_PLACEHOLDER",
-        "footer": "FOOTER_SLOT_PLACEHOLDER",
-    }.get(position, "HEADER_SLOT_PLACEHOLDER")
-    return (
-        f'<aside class="ad-slot ad-slot--{position}" aria-label="Espaço publicitário" data-ad-position="{position}">'
-        f'<div class="container">'
-        f'<ins class="adsbygoogle" style="display:block" '
-        f'data-ad-client="{ADS_CLIENT}" data-ad-slot="{slot_id}" '
-        f'data-ad-format="auto" data-full-width-responsive="true"></ins>'
-        f'<script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>'
-        f'</div></aside>'
-    )
+    del position  # unused; kept for API compatibility
+    return ""
 
 
 def layout(
@@ -895,6 +889,7 @@ def layout(
     current: str = "",
     breadcrumbs: list[tuple[str, str]] | None = None,
     faq: list[tuple[str, str]] | None = None,
+    noindex: bool = False,
 ) -> str:
     canonical = DOMAIN + ("/" if path == "index.html" else f"/{path}")
     og_image = DOMAIN + "/img/og-default.png"
@@ -938,12 +933,13 @@ def layout(
         body = body + render_faq_section(faq)
 
     schema_html = "\n".join(schema_blocks)
+    robots_meta = '\n<meta name="robots" content="noindex, follow">' if noindex else ""
 
     return f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">{robots_meta}
 <meta name="google-adsense-account" content="{ADS_CLIENT}">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
@@ -996,8 +992,8 @@ def layout(
 """
 
 
-def write_page(path: str, title: str, description: str, body: str, current: str = "", breadcrumbs=None, faq=None) -> None:
-    (ROOT / path).write_text(layout(title, description, path, body, current, breadcrumbs, faq), encoding="utf-8")
+def write_page(path: str, title: str, description: str, body: str, current: str = "", breadcrumbs=None, faq=None, noindex: bool = False) -> None:
+    (ROOT / path).write_text(layout(title, description, path, body, current, breadcrumbs, faq, noindex=noindex), encoding="utf-8")
 
 
 # ----------------------------------------------------------------------------- pieces
@@ -1580,8 +1576,8 @@ def render_state_pages(year: int) -> None:
         body += f'<section class="section"><div class="container"><h2>Lista de feriados</h2>{holiday_table(items)}<p class="notice">Datas estaduais devem ser confirmadas na legislação local em usos formais.</p></div></section>'
         write_page(
             f"feriados-estado-{state['slug']}-{year}.html",
-            f"Feriados {state['name']} {year}",
-            f"Feriados no estado de {state['name']} em {year}, com datas nacionais e estaduais.",
+            f"Feriados estaduais em {state['name']} {year} - todas as cidades",
+            f"Feriados estaduais e nacionais em {state['name']} em {year}, válidos para todas as cidades do estado.",
             body,
             "locais",
             breadcrumbs=[("Início", "index.html"), ("Estados e capitais", "feriados-estaduais.html"), (state["name"], ""), (str(year), "")],
@@ -1602,8 +1598,8 @@ def render_state_pages(year: int) -> None:
         body += ad_slot("mid")
         write_page(
             f"dias-uteis-{state['slug']}-{year}.html",
-            f"Dias úteis {state['name']} {year}",
-            f"Dias úteis em {state['name']} ({uf}) em {year}, por mês.",
+            f"Dias úteis estaduais em {state['name']} {year} - contagem por mês",
+            f"Dias úteis em {state['name']} ({uf}) em {year}, mês a mês, considerando feriados nacionais e estaduais.",
             body,
             "dias",
             breadcrumbs=[("Início", "index.html"), ("Dias úteis", f"dias-uteis-{ACTIVE_YEAR}.html"), (state["name"], ""), (str(year), "")],
@@ -1625,8 +1621,8 @@ def render_state_pages(year: int) -> None:
         body += f'<section class="section"><div class="container"><h2>Lista de feriados em {state["capital"]}</h2>{holiday_table(city_items)}<p class="notice">Feriados municipais podem mudar por lei ou decreto. Confirme com a prefeitura para uso formal.</p></div></section>'
         write_page(
             city_file,
-            f"Feriados {state['capital']} {year}",
-            f"Feriados em {state['capital']} - {uf} em {year}.",
+            f"Feriados em {state['capital']} (capital) {year} - municipais + estaduais + nacionais",
+            f"Feriados em {state['capital']} - {uf} em {year}: municipais da capital, estaduais de {state['name']} e nacionais.",
             body,
             "locais",
             breadcrumbs=[("Início", "index.html"), ("Estados e capitais", "feriados-estaduais.html"), (state["capital"], ""), (str(year), "")],
@@ -1647,8 +1643,8 @@ def render_state_pages(year: int) -> None:
         body += ad_slot("mid")
         write_page(
             f"dias-uteis-{state['capital_slug']}-{uf.lower()}-{year}.html",
-            f"Dias úteis {state['capital']} {year}",
-            f"Dias úteis em {state['capital']} - {uf} em {year}, por mês.",
+            f"Dias úteis em {state['capital']} (capital) {year} - municipais + estaduais + nacionais",
+            f"Dias úteis em {state['capital']} - {uf} em {year}, mês a mês, com feriados municipais, estaduais e nacionais.",
             body,
             "dias",
             breadcrumbs=[("Início", "index.html"), ("Dias úteis", f"dias-uteis-{ACTIVE_YEAR}.html"), (state["capital"], ""), (str(year), "")],
@@ -1947,6 +1943,7 @@ def render_404() -> None:
         "Página não encontrada - 404",
         f"Página não encontrada no {SITE_NAME_DISPLAY}.",
         body,
+        noindex=True,
     )
 
 
@@ -2001,7 +1998,7 @@ def write_calendarios_json(start: int, end: int) -> None:
 
 def write_sitemap(start: int, end: int) -> None:
     today_iso = date.today().isoformat()
-    urls: list[str] = ["", "calcular-dias-uteis.html", "adicionar-dias-uteis.html", "subtrair-dias-uteis.html", "numero-da-semana.html", "data-da-semana.html", "calculadora-idade.html", "diferenca-entre-datas.html", "countdown.html", "proximo-feriado.html", "dia-da-semana.html", "data-mais-dias.html", "calendario-bancario.html", "feriados-estaduais.html", "sobre.html", "fontes.html", "contato.html", "privacidade.html", "termos.html", "apoiar.html"]
+    urls: list[str] = ["", "calcular-dias-uteis.html", "adicionar-dias-uteis.html", "subtrair-dias-uteis.html", "numero-da-semana.html", "data-da-semana.html", "calculadora-idade.html", "diferenca-entre-datas.html", "countdown.html", "proximo-feriado.html", "dia-da-semana.html", "data-mais-dias.html", "calendario-bancario.html", "feriados-estaduais.html", "sobre.html", "fontes.html", "contato.html", "privacidade.html", "termos.html", "apoiar.html", "artigos/", "artigos/dias-da-semana.html", "artigos/distribuicao-dias-meses.html", "artigos/historia-dos-calendarios.html", "artigos/historia-feriados-brasil.html", "artigos/nomes-dos-meses.html"]
     for year in range(start, end + 1):
         urls.append(f"calendario-{year}.html")
         for slug in MONTH_SLUGS:

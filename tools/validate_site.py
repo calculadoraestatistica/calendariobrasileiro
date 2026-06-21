@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 DOMAIN = "https://calendariobrasileiro.com.br"
 START_YEAR = 2026
-END_YEAR = 2050
+END_YEAR = 2030
 
 
 class LinkCollector(HTMLParser):
@@ -135,6 +135,15 @@ def validate_sitemap(errors: list[str]) -> None:
         for path in ROOT.glob("*.html")
         if path.name != "404.html"
     }
+    # Articles live under /artigos/ and are part of the public site; accept them
+    # in the sitemap (index.html maps to the bare /artigos/ URL).
+    artigos_dir = ROOT / "artigos"
+    if artigos_dir.is_dir():
+        for path in artigos_dir.glob("*.html"):
+            if path.name == "index.html":
+                expected.add(f"{DOMAIN}/artigos/")
+            else:
+                expected.add(f"{DOMAIN}/artigos/{path.name}")
     for url in sorted(expected - set(locs)):
         errors.append(f"sitemap sem URL: {url}")
     for url in sorted(set(locs) - expected):
