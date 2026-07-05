@@ -1,0 +1,53 @@
+name: Regen diario do site
+
+# Regenera o site diariamente para manter o mini calendario, contagens e
+# textos "mes atual" frescos. O js/today.js cobre visitantes com HTML em
+# cache, mas a regen garante que o HTML publicado tambem esteja correto.
+# Disparo principal: cron-job.org via workflow_dispatch (padrao dos outros
+# sites); o schedule do GitHub fica como fallback.
+
+on:
+  schedule:
+    - cron: "20 3 * * *"   # 03:20 UTC = 00:20 BRT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-regen
+  cancel-in-progress: false
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate site
+        run: python tools/generate_site.py
+
+      - name: Validate
+        run: python tools/validate_site.py
+
+      - name: Commit and push if pages changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          # Evita commit-ruido quando so o lastmod do sitemap mudou
+          changed=$(git diff --cached --name-only | grep -v '^sitemap.xml$' || true)
+          if [ -z "$changed" ]; then
+            echo "Somente sitemap.xml (lastmod) mudou — nada a commitar."
+            git reset --hard
+          else
+            git commit -m "regen: atualiza site para $(date -u +'%Y-%m-%d')"
+            git push origin HEAD:main
+          fi
