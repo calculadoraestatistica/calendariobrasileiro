@@ -1,0 +1,52 @@
+name: Scrape dividendos B3
+
+# Atualiza data/dividends/ diariamente com proventos da B3 (fonte:
+# statusinvest getearnings). Roda 1x/dia apos o fechamento do mercado.
+# O schedule do GitHub e pouco confiavel, entao o disparo principal vem
+# do cron-job.org via workflow_dispatch (mesmo padrao dos sites agro).
+
+on:
+  schedule:
+    - cron: "40 21 * * 1-5"   # 21:40 UTC = 18:40 BRT, dias uteis (fallback)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape-dividends
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scrape proventos (incremental)
+        run: |
+          python tools/scrape_dividends.py
+
+      - name: Show result
+        run: |
+          ls -la data/dividends/
+          head -c 800 data/dividends/meta.json || true
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/dividends/ img/logos/
+          if git diff --cached --quiet; then
+            echo "Sem mudancas."
+          else
+            git commit -m "dividendos: atualiza proventos B3 ($(date -u +'%Y-%m-%dT%H:%MZ'))"
+            git push origin HEAD:main
+          fi

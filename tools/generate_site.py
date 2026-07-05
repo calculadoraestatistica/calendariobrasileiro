@@ -900,6 +900,7 @@ def layout(
         ("Dias úteis", f"dias-uteis-{nav_year}.html", "dias"),
         ("Bancário", f"feriados-bancarios-{nav_year}.html", "bancario"),
         ("Estados e capitais", "feriados-estaduais.html", "locais"),
+        ("Dividendos", "dividendos.html", "dividendos"),
         ("Calculadoras", "calcular-dias-uteis.html", "calc"),
     ]
     nav_html = "".join(
@@ -1998,7 +1999,7 @@ def write_calendarios_json(start: int, end: int) -> None:
 
 def write_sitemap(start: int, end: int) -> None:
     today_iso = date.today().isoformat()
-    urls: list[str] = ["", "calcular-dias-uteis.html", "adicionar-dias-uteis.html", "subtrair-dias-uteis.html", "numero-da-semana.html", "data-da-semana.html", "calculadora-idade.html", "diferenca-entre-datas.html", "countdown.html", "proximo-feriado.html", "dia-da-semana.html", "data-mais-dias.html", "calendario-bancario.html", "feriados-estaduais.html", "sobre.html", "fontes.html", "contato.html", "privacidade.html", "termos.html", "apoiar.html", "artigos/", "artigos/dias-da-semana.html", "artigos/distribuicao-dias-meses.html", "artigos/historia-dos-calendarios.html", "artigos/historia-feriados-brasil.html", "artigos/nomes-dos-meses.html"]
+    urls: list[str] = ["", "calcular-dias-uteis.html", "adicionar-dias-uteis.html", "subtrair-dias-uteis.html", "numero-da-semana.html", "data-da-semana.html", "calculadora-idade.html", "diferenca-entre-datas.html", "countdown.html", "proximo-feriado.html", "dia-da-semana.html", "data-mais-dias.html", "calendario-bancario.html", "feriados-estaduais.html", "sobre.html", "fontes.html", "contato.html", "privacidade.html", "termos.html", "apoiar.html", "dividendos.html", "artigos/", "artigos/dias-da-semana.html", "artigos/distribuicao-dias-meses.html", "artigos/historia-dos-calendarios.html", "artigos/historia-feriados-brasil.html", "artigos/nomes-dos-meses.html"]
     for year in range(start, end + 1):
         urls.append(f"calendario-{year}.html")
         for slug in MONTH_SLUGS:
@@ -2068,8 +2069,14 @@ Each year confirm: national holiday laws, FEBRABAN/ANBIMA calendar, state and ca
 # ----------------------------------------------------------------------------- driver
 
 
+# Paginas hand-authored na raiz que o generator NAO pode apagar/regravar.
+HAND_AUTHORED = {"dividendos.html"}
+
+
 def clean_generated() -> None:
     for path in ROOT.glob("*.html"):
+        if path.name in HAND_AUTHORED:
+            continue
         path.unlink()
     for path in ROOT.glob("*.xml"):
         path.unlink()
