@@ -988,6 +988,63 @@ def ad_slot(position: str) -> str:
     return ""
 
 
+HREFLANG_MAP = {
+    "index.html": "index.html",
+    "dividendos.html": "udbytte.html",
+    "numero-da-semana.html": "ugenummer.html",
+    "calculadora-idade.html": "aldersberegner.html",
+    "diferenca-entre-datas.html": "dato-difference.html",
+    "countdown.html": "nedtaelling.html",
+    "proximo-feriado.html": "naeste-helligdag.html",
+    "dia-da-semana.html": "ugedag.html",
+    "data-mais-dias.html": "dato-plus-dage.html",
+    "calcular-dias-uteis.html": "beregn-arbejdsdage.html",
+    "adicionar-dias-uteis.html": "laeg-arbejdsdage-til.html",
+    "subtrair-dias-uteis.html": "traek-arbejdsdage-fra.html",
+    "data-da-semana.html": "dato-fra-uge.html",
+    "calendario-2026.html": "kalender-2026.html",
+    "feriados-2026.html": "helligdage-2026.html",
+    "dias-uteis-2026.html": "arbejdsdage-2026.html",
+    "melhores-dias-para-folga-2026.html": "bedste-feriedage-2026.html",
+    "pascoa-2026.html": "paaske-2026.html",
+    "calendario-2027.html": "kalender-2027.html",
+    "feriados-2027.html": "helligdage-2027.html",
+    "dias-uteis-2027.html": "arbejdsdage-2027.html",
+    "melhores-dias-para-folga-2027.html": "bedste-feriedage-2027.html",
+    "pascoa-2027.html": "paaske-2027.html",
+    "calendario-2028.html": "kalender-2028.html",
+    "feriados-2028.html": "helligdage-2028.html",
+    "dias-uteis-2028.html": "arbejdsdage-2028.html",
+    "melhores-dias-para-folga-2028.html": "bedste-feriedage-2028.html",
+    "pascoa-2028.html": "paaske-2028.html",
+    "calendario-2029.html": "kalender-2029.html",
+    "feriados-2029.html": "helligdage-2029.html",
+    "dias-uteis-2029.html": "arbejdsdage-2029.html",
+    "melhores-dias-para-folga-2029.html": "bedste-feriedage-2029.html",
+    "pascoa-2029.html": "paaske-2029.html",
+    "calendario-2030.html": "kalender-2030.html",
+    "feriados-2030.html": "helligdage-2030.html",
+    "dias-uteis-2030.html": "arbejdsdage-2030.html",
+    "melhores-dias-para-folga-2030.html": "bedste-feriedage-2030.html",
+    "pascoa-2030.html": "paaske-2030.html",
+}
+
+DK_DOMAIN = "https://danskedage.dk"
+
+
+def hreflang_links(path: str, canonical: str) -> str:
+    """Par pt-BR <-> da-DK quando existe pagina equivalente no danskedage."""
+    dk = HREFLANG_MAP.get(path)
+    if not dk:
+        return ""
+    dk_url = DK_DOMAIN + ("/" if dk == "index.html" else f"/{dk}")
+    return (
+        f'<link rel="alternate" hreflang="pt-BR" href="{canonical}">\n'
+        f'<link rel="alternate" hreflang="da-DK" href="{dk_url}">\n'
+        f'<link rel="alternate" hreflang="x-default" href="{canonical}">\n'
+    )
+
+
 def layout(
     title: str,
     description: str,
@@ -999,6 +1056,7 @@ def layout(
     noindex: bool = False,
 ) -> str:
     canonical = DOMAIN + ("/" if path == "index.html" else f"/{path}")
+    hreflang = hreflang_links(path, canonical)
     og_image = DOMAIN + "/img/og-default.png"
     nav_year = ACTIVE_YEAR
     nav = [
@@ -1052,6 +1110,7 @@ def layout(
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="canonical" href="{canonical}">
+{hreflang}
 <meta name="theme-color" content="#166534">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
