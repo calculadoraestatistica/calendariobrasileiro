@@ -48,5 +48,12 @@ jobs:
             echo "Sem mudancas."
           else
             git commit -m "dividendos: atualiza proventos B3 ($(date -u +'%Y-%m-%dT%H:%MZ'))"
-            git push origin HEAD:main
+            n=0
+            until git push origin HEAD:main; do
+              n=$((n+1))
+              if [ "$n" -ge 3 ]; then echo "push falhou apos 3 tentativas"; exit 1; fi
+              echo "push falhou (tentativa $n/3) — rebase e retry em 20s"
+              sleep 20
+              git pull --rebase origin main || true
+            done
           fi

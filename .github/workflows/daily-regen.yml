@@ -49,5 +49,12 @@ jobs:
             git reset --hard
           else
             git commit -m "regen: atualiza site para $(date -u +'%Y-%m-%d')"
-            git push origin HEAD:main
+            n=0
+            until git push origin HEAD:main; do
+              n=$((n+1))
+              if [ "$n" -ge 3 ]; then echo "push falhou apos 3 tentativas"; exit 1; fi
+              echo "push falhou (tentativa $n/3) — rebase e retry em 20s"
+              sleep 20
+              git pull --rebase origin main || true
+            done
           fi
