@@ -472,9 +472,9 @@ def css_text() -> str:
 .result-box{margin-top:1rem;background:#f0f5ec;border:1px solid var(--brand);border-left:4px solid var(--brand);border-radius:0;padding:1rem}.notice{background:#fbf3dc;border:1px solid #d9c58a;border-radius:0;padding:1rem;color:#6b4d10}
 .donate-card{text-align:center}.donate-qr{display:block;max-width:190px;height:auto;margin:1rem auto 0;border:1px solid var(--line);border-radius:0}
 .footer{margin-top:2rem;padding:2rem 0;background:var(--ink);color:#e8e2d9;border-top:4px solid var(--brand)}.footer a{color:#efe9dd}.footer h3{font-size:.92rem;text-transform:uppercase;letter-spacing:.12em;color:#f7f3e8}.footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:1rem}.footer ul{list-style:none;padding:0;margin:.4rem 0}.footer li{margin:.25rem 0}
-.tag-cloud{display:flex;flex-wrap:wrap;gap:.45rem}.tag-link{display:inline-flex;text-decoration:none;padding:.32rem .6rem;border-radius:0;background:var(--paper);border:1px solid var(--line);font-weight:700;color:var(--brand);font-size:.88rem}.tag-link:hover{border-color:var(--ink)}.tag{display:inline-flex;padding:.16rem .45rem;border-radius:0;background:var(--soft);color:#14532d;font-size:.76rem;font-weight:800;letter-spacing:.02em}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.45rem}.tag-link{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;padding:.5rem .8rem;border-radius:0;background:var(--paper);border:1px solid var(--line);font-weight:700;color:var(--brand);font-size:.88rem}.tag-link:hover{border-color:var(--ink)}.tag{display:inline-flex;padding:.16rem .45rem;border-radius:0;background:var(--soft);color:#14532d;font-size:.76rem;font-weight:800;letter-spacing:.02em}
 .nav-toggle{display:none;background:transparent;border:1px solid var(--ink);border-radius:0;padding:.45rem .6rem;cursor:pointer;color:var(--ink);font:inherit}.nav-toggle__bars{display:inline-flex;flex-direction:column;gap:4px;width:20px;vertical-align:middle}.nav-toggle__bars span{display:block;height:2px;background:currentColor;border-radius:0}
-@media(max-width:780px){.hero-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.section-title{display:block}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{min-width:560px}.main-nav a{font-size:.86rem;padding:.45rem}.month--large .calendar-grid span{min-height:42px;font-size:1rem}.nav-toggle{display:inline-flex;align-items:center;gap:.4rem;font-weight:700}.main-nav{display:none;flex-basis:100%;order:3}.main-nav.is-open{display:block}.main-nav ul{flex-direction:column;gap:0;padding:.4rem 0}.main-nav a{display:block;width:100%;font-size:.95rem;padding:.6rem .3rem;border-bottom:1px solid var(--line)}.main-nav a[aria-current=page]{border-bottom:1px solid var(--line);background:var(--soft);color:var(--ink)}.site-header__inner{flex-wrap:wrap}.hero{padding:1.6rem 0 1.2rem}.hero h1{font-size:clamp(1.7rem,7vw,2.4rem)}.hero+.ad-slot--header{display:none}.hero+.ad-slot--header+.section{padding-top:1rem}}
+@media(max-width:780px){.hero-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.section-title{display:block}.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{min-width:560px}.main-nav a{font-size:.86rem;padding:.45rem}.calendar-grid span{min-height:44px;font-size:1rem}.month--large .calendar-grid span{min-height:46px;font-size:1.05rem}.mini-calendar span{min-height:40px}.calendar-legend{padding:.6rem .7rem;gap:.45rem .7rem}.calendar-legend__item{font-size:.84rem}.nav-toggle{display:inline-flex;align-items:center;gap:.4rem;font-weight:700}.main-nav{display:none;flex-basis:100%;order:3}.main-nav.is-open{display:block}.main-nav ul{flex-direction:column;gap:0;padding:.4rem 0}.main-nav a{display:block;width:100%;font-size:.95rem;padding:.6rem .3rem;border-bottom:1px solid var(--line)}.main-nav a[aria-current=page]{border-bottom:1px solid var(--line);background:var(--soft);color:var(--ink)}.site-header__inner{flex-wrap:wrap}.hero{padding:1.6rem 0 1.2rem}.hero h1{font-size:clamp(1.7rem,7vw,2.4rem)}.hero+.ad-slot--header{display:none}.hero+.ad-slot--header+.section{padding-top:1rem}}
 .calendar-legend{display:flex;flex-wrap:wrap;gap:.55rem .85rem;align-items:center;margin:0 0 1rem;padding:.7rem .85rem;background:var(--paper);border:1px solid var(--line);border-radius:0}.month--large .calendar-legend{margin-top:.35rem}.calendar-legend__item{display:inline-flex;align-items:center;gap:.4rem;color:#4b463f;font-size:.88rem;font-weight:600}.calendar-legend__swatch{width:16px;height:16px;border-radius:0;border:1px solid var(--line);display:inline-block}.calendar-legend__swatch--holiday{background:var(--hol-bg);border-color:var(--hol)}.calendar-legend__swatch--special{background:var(--sp-bg);border-color:#c78a3b}.calendar-legend__swatch--weekend{background:var(--wk-bg);border-color:#c3cad4}.calendar-legend__swatch--today{background:var(--ink);border-color:var(--ink)}
 .quick-panel .calendar-legend{margin:.75rem 0 0;padding:.55rem .6rem;gap:.4rem .65rem;border:0;padding-left:0;padding-right:0;background:transparent}.quick-panel .calendar-legend__item{font-size:.76rem}.quick-panel .calendar-legend__swatch{width:12px;height:12px;border-radius:0}
 .breadcrumbs{background:var(--paper);border-bottom:1px solid var(--line);padding:.65rem 0;font-size:.88rem;color:var(--muted);margin:0}.breadcrumbs a{color:var(--brand);text-decoration:none;font-weight:700}.breadcrumbs a:hover{text-decoration:underline}.breadcrumbs [aria-current=page]{color:var(--ink);font-weight:700}
@@ -488,6 +488,7 @@ def css_text() -> str:
 .calendar-grid span,.mini-calendar span{transition:background-color .12s ease,box-shadow .12s ease}.calendar-grid span[title],.mini-calendar span[title]{cursor:help}.calendar-grid span[title]:hover,.mini-calendar span[title]:hover{box-shadow:inset 0 0 0 2px rgba(28,25,23,.45)}
 .calendar-grid .today,.mini-calendar .today{background:var(--ink);color:var(--bg);font-weight:800;outline:none}
 tbody tr:nth-child(even) td{background:#f6f1e7}tbody tr:hover td{background:#f1ead9}
+.month-pager{display:flex;justify-content:space-between;gap:.7rem;flex-wrap:wrap;max-width:760px;margin:1rem auto 0}.month-pager .btn{flex:1 1 40%;min-height:48px}
 @media print{.site-header,.main-nav,.footer,.ad-slot,.no-print,.hero-actions,.faq,.export-bar,.add-cell,.skip-link,.tag-cloud,.breadcrumbs{display:none!important}body{background:#fff;color:#000;font-size:11pt}.section{padding:.4rem 0}.container{width:100%}.hero{padding:0;background:#fff;border:0}.hero h1{font-size:1.4rem}.lead{font-size:1rem;color:#222}.table-wrap{border:0;overflow:visible}table{min-width:0;font-size:10pt}th{background:#eee;color:#000}th:last-child,td:last-child{display:none}.card{break-inside:avoid;box-shadow:none;border-color:#aaa}.notice{background:#fff;border-color:#bbb;color:#000}a{color:#000;text-decoration:none}a[href]:after{content:""}.month-grid{grid-template-columns:repeat(3,1fr);gap:.5rem;page-break-inside:auto}.month{break-inside:avoid;padding:.4rem}}
 """
 
@@ -1580,7 +1581,9 @@ def render_year(year: int) -> None:
     )
 
 
-def render_month_pages(year: int) -> None:
+def render_month_pages(year: int, start: int | None = None, end: int | None = None) -> None:
+    start = START_YEAR_DEFAULT if start is None else start
+    end = END_YEAR_DEFAULT if end is None else end
     for month in range(1, 13):
         month_name = MONTHS[month - 1]
         slug = MONTH_SLUGS[month - 1]
@@ -1592,10 +1595,26 @@ def render_month_pages(year: int) -> None:
             actions=f'<a class="btn btn--primary" href="calendario-{year}.html">Calendário {year}</a><a class="btn btn--ghost" href="dias-uteis-{year}.html">Dias úteis</a>',
         )
         body += ad_slot("header")
+        prev_y, prev_m = (year, month - 1) if month > 1 else (year - 1, 12)
+        next_y, next_m = (year, month + 1) if month < 12 else (year + 1, 1)
+        pager_parts = []
+        if prev_y >= start:
+            pager_parts.append(
+                f'<a class="btn btn--ghost" rel="prev" href="calendario-{MONTH_SLUGS[prev_m-1]}-{prev_y}.html">&larr; {MONTHS[prev_m-1].capitalize()} {prev_y}</a>'
+            )
+        if next_y <= end:
+            pager_parts.append(
+                f'<a class="btn btn--ghost" rel="next" href="calendario-{MONTH_SLUGS[next_m-1]}-{next_y}.html">{MONTHS[next_m-1].capitalize()} {next_y} &rarr;</a>'
+            )
+        pager = (
+            f'<nav class="month-pager" aria-label="Navegar entre meses">{"".join(pager_parts)}</nav>'
+            if pager_parts
+            else ""
+        )
         body += (
             f'<section class="section"><div class="container"><section class="month month--large">'
             f'<h2>{month_name.capitalize()} {year}</h2>'
-            f'{calendar_legend()}{month_calendar_html(year, month)}</section></div></section>'
+            f'{calendar_legend()}{month_calendar_html(year, month)}</section>{pager}</div></section>'
         )
         if month_items:
             body += (
@@ -2380,7 +2399,7 @@ def generate(start: int, end: int) -> None:
 
     for year in range(start, end + 1):
         render_year(year)
-        render_month_pages(year)
+        render_month_pages(year, start, end)
         render_holidays(year)
         render_banking(year)
         render_workdays(year)
