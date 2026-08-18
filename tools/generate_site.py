@@ -36,6 +36,7 @@ from typing import Iterable
 # renderers without requiring the user to set PYTHONPATH.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from extra_tool_pages import render_all as render_extra_tools  # noqa: E402
+from extra_tool_pages import _related_grid as related_tools_grid  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1970,6 +1971,7 @@ def render_tools() -> None:
         extra=diff_tool,
     )
     body += ad_slot("header")
+    body += related_tools_grid("calcular-dias-uteis.html")
     body += ad_slot("mid")
     write_page(
         "calcular-dias-uteis.html",
@@ -1995,6 +1997,7 @@ def render_tools() -> None:
         extra=add_tool,
     )
     body += ad_slot("header")
+    body += related_tools_grid("adicionar-dias-uteis.html")
     body += ad_slot("mid")
     write_page(
         "adicionar-dias-uteis.html",
@@ -2018,6 +2021,7 @@ def render_tools() -> None:
         extra=week_tool,
     )
     body += ad_slot("header")
+    body += related_tools_grid("numero-da-semana.html")
     body += ad_slot("mid")
     write_page(
         "numero-da-semana.html",

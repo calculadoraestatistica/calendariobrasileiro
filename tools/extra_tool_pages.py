@@ -163,7 +163,6 @@ def render_calculadora_idade(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>A calculadora de idade entrega a duração entre a data de nascimento e a data de referência em anos, meses e dias. É útil para contratos, formulários, escola, certidões, idade gestacional, faixa etária em planos de saúde e curiosidade pessoal.</p>
@@ -172,6 +171,7 @@ def render_calculadora_idade(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Quem nasceu em 1990-05-12 e consulta em 2026-06-11 tem 36 anos, 0 meses e 30 dias. Total de 13.179 dias. O próximo aniversário é 12 de maio de 2027.</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -268,7 +268,6 @@ def render_diferenca_entre_datas(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Calcula o intervalo entre duas datas em várias unidades ao mesmo tempo. Funciona bem para acompanhar gestação (semanas e dias), contratos (anos e meses), projetos (dias) e curiosidades pessoais (horas e minutos vividos).</p>
@@ -277,6 +276,7 @@ def render_diferenca_entre_datas(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Entre 2025-01-15 e 2026-06-11 há 1 ano, 4 meses e 27 dias (511 dias corridos, 73 semanas).</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -387,7 +387,6 @@ def render_countdown(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Um cronômetro em formato regressivo, que mostra quantos dias, horas, minutos e segundos faltam para uma data importante. Funciona para aniversários, viagens, casamentos, exames, lançamentos e datas de entrega.</p>
@@ -396,6 +395,7 @@ def render_countdown(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Para acompanhar quanto falta até 31 de dezembro, preencha a data e clique em iniciar contagem. A URL passa a conter <code>?d=2026-12-31</code> e pode ser enviada a outras pessoas.</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -484,7 +484,6 @@ def render_proximo_feriado(out_dir: Path, layout_fn, **deps) -> None:
         ghost_href="countdown.html",
         ghost_label="Contagem regressiva",
     )
-    body += _ad("header")
     body += (
         '<section class="section"><div class="container"><div class="tool" data-tool="next-holiday">'
         + highlight
@@ -492,7 +491,7 @@ def render_proximo_feriado(out_dir: Path, layout_fn, **deps) -> None:
         + table
         + '</div></div></section>'
     )
-    body += _ad("mid")
+    body += _ad("header")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Saber rapidamente qual é o próximo feriado nacional brasileiro, quantos dias faltam e em que dia da semana ele cai. Útil para planejar viagem, emenda e folga.</p>
@@ -501,6 +500,7 @@ def render_proximo_feriado(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Se hoje é meio de agosto, o próximo feriado nacional costuma ser o 7 de Setembro. A página mostra a data exata, o dia da semana e quantos dias faltam.</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -592,7 +592,6 @@ def render_dia_da_semana(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Descobrir em que dia da semana caiu seu nascimento, um contrato antigo, uma data histórica ou uma data futura. A tabela mostra ainda a mesma data nos anos vizinhos, ótimo para planejar aniversários e agendas.</p>
@@ -601,6 +600,7 @@ def render_dia_da_semana(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>02/05/1990 caiu em uma quarta-feira. A mesma data em 2026 será um sábado.</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -679,7 +679,6 @@ def render_data_mais_dias(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Calcula a data final após somar ou subtrair um número de dias corridos a partir de uma data inicial. Diferente da contagem em dias úteis, esta versão inclui fins de semana e feriados.</p>
@@ -688,6 +687,7 @@ def render_data_mais_dias(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Para saber o vencimento 30 dias após 11 de junho de 2026, preencha a data, escolha adicionar e digite 30. O resultado é 11 de julho de 2026 (sábado).</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -787,7 +787,6 @@ def render_subtrair_dias_uteis(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Quando você sabe o prazo final e quer descobrir até quando precisa começar, esta calculadora é o caminho inverso da adição de dias úteis. Útil para tribunais, contratos, processos administrativos e planejamento de equipe.</p>
@@ -796,6 +795,7 @@ def render_subtrair_dias_uteis(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Para entregar um documento em 15 dias úteis antes de uma audiência marcada para 30/10/2026 (sexta), recuar 15 dias úteis devolve 09/10/2026 (sexta).</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
@@ -892,7 +892,6 @@ def render_data_da_semana(out_dir: Path, layout_fn, **deps) -> None:
   });
 })();
 </script>"""
-    body += _ad("mid")
     body += """<section class="section"><div class="container container--narrow prose">
 <h2>Para que serve</h2>
 <p>Quando uma equipe se planeja em sprints ou semanas comerciais, é comum dizer 'semana 27, quinta-feira' em vez de uma data específica. Esta ferramenta faz o caminho inverso e devolve a data exata.</p>
@@ -901,6 +900,7 @@ def render_data_da_semana(out_dir: Path, layout_fn, **deps) -> None:
 <h2>Exemplo</h2>
 <p>Semana 27 de 2027, quinta-feira (dia 4): retorna 8 de julho de 2027.</p>
 </div></section>"""
+    body += _ad("mid")
     body += _related_grid(slug)
 
     faq = [
