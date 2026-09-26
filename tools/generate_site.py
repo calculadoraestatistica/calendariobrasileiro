@@ -1591,6 +1591,11 @@ def render_index(year: int) -> None:
         panel=(year, date.today().month if date.today().year == year else 1),
         actions=f'<a class="btn btn--primary" href="calcular-dias-uteis.html">Calcular dias úteis</a><a class="btn btn--ghost" href="feriados-{year}.html">Ver feriados {year}</a>',
     )
+    body += (
+        '<div class="container media-hero">'
+        '<img src="img/hero-calendario.jpg" width="1200" height="675" alt="Quadrados de calendário em perspectiva com um sol ao fundo"'
+        ' loading="lazy" decoding="async"></div>'
+    )
     body += ad_slot("header")
     body += '<section class="section"><div class="container"><div class="section-title"><div><h2>Resumo de ' + str(year) + '</h2><p>Contagem nacional padrão.</p></div></div>'
     body += year_overview(year)
