@@ -2243,11 +2243,11 @@ def render_contact() -> None:
 
 
 def render_privacy() -> None:
-    body = hero("Política de privacidade", "Esta política explica cookies, anúncios e dados de navegação.")
+    body = hero("Política de privacidade", "Esta política explica cookies e dados de navegação.")
     body += ad_slot("header")
     body += f"""<section class="section"><div class="container container--narrow prose"><p class="muted">Última atualização: {date.today().strftime('%d/%m/%Y')}.</p>
-<h2>Cookies e anúncios</h2><p>Podemos usar cookies e tecnologias similares para funcionamento do site, métricas agregadas e anúncios. O Google AdSense pode usar cookies para personalizar ou medir anúncios conforme as políticas do Google.</p>
-<h2>Dados pessoais</h2><p>As calculadoras rodam no navegador e não exigem cadastro. Se você enviar e-mail, usaremos as informações apenas para responder.</p>
+<h2>Cookies e anúncios</h2><p>O site não exibe anúncios e não participa de programas de afiliados. Nenhuma página grava cookies ou usa armazenamento local, e não há script de terceiro, medição de audiência ou rastreamento entre sites. Tudo que as páginas carregam (HTML, CSS, JavaScript, imagens e ícones) vem do próprio domínio. Algumas páginas trazem links que apontam para fora, como os botões de adicionar um feriado ao Google Calendar ou ao Outlook, as referências às fontes oficiais e o apoio no Buy Me a Coffee; nenhum deles carrega nada enquanto a página está aberta, e a política de privacidade do destino passa a valer a partir do clique.
+<h2>Dados pessoais</h2><p>As calculadoras rodam no navegador e não exigem cadastro; as datas digitadas ficam no aparelho e não são enviadas para servidor nenhum. As páginas são entregues pelo GitHub Pages, que registra os acessos nos próprios logs. Esses registros não ficam disponíveis para quem mantém o site. Um e-mail enviado ao endereço de contato é usado só para responder.</p>
 <h2>Seus direitos</h2><p>Você pode solicitar informações ou remoção de dados de contato pelo e-mail informado na página de contato.</p>
 </div></section>"""
     body += ad_slot("mid")
