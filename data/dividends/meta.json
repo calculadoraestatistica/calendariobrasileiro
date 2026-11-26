@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T21:45:36Z",
+  "updated_at": "2026-11-26T03:47:30Z",
   "source": "statusinvest.com.br (B3/CVM)",
   "years": [
     2007,
@@ -26,5 +26,5 @@
   ],
   "total_events": 15902,
   "recent_events": 516,
-  "provisioned": 12
+  "provisioned": 0
 }
